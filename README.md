@@ -1,67 +1,24 @@
-<div align="center">
+# BARBELL
 
-<img src="assets/banner.png" alt="openGym" width="720">
+![BARBELL horizontal lockup](assets/barbell-horizontal-lockup.svg)
 
-<br>
+**YOUR WORKOUT TRACKER** · AI COACH & GYM TRACKER
 
-**A self-hosted gym & body-weight tracker you actually own.**
+Barbell is an open-source workout tracker built on the [openGym project](https://github.com/DuarteSantos8/openGym). Plan your training, follow guided workouts, log sets and bodyweight, see your progress, and optionally use an AI Coach. Run the web app on your own server or use the existing Capacitor mobile code in local mode. This repository retains the upstream Git history and [GNU AGPL v3](LICENSE) license.
 
-Plan your week, run guided workouts, track every set and your body weight over time —
-on your phone, synced across devices, behind your own passkey login.
-No account on someone else's server, no subscription, no ads. Just `docker compose up`.
+The Barbell rebrand is source work in progress. The upstream public site, APK and container images are **upstream releases**, not Barbell releases. There is no Barbell production domain or store download claimed here.
 
-<br>
+## How It Works
 
-[![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-a3e635?style=flat-square)](LICENSE)
-![Self-hosted](https://img.shields.io/badge/self--hosted-%F0%9F%8F%A0-60a5fa?style=flat-square)
-![PWA](https://img.shields.io/badge/PWA-installable-a78bfa?style=flat-square)
-![React](https://img.shields.io/badge/React-19-38bdf8?style=flat-square&logo=react&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-compose-2496ED?style=flat-square&logo=docker&logoColor=white)
-![No tracking](https://img.shields.io/badge/telemetry-none-f472b6?style=flat-square)
-<br>
-[![Pipeline](https://gitlab.com/DuarteSantos8/opengym/badges/main/pipeline.svg?style=flat-square)](https://gitlab.com/DuarteSantos8/opengym/-/pipelines)
-[![Coverage](https://gitlab.com/DuarteSantos8/opengym/badges/main/coverage.svg?job=test:frontend&style=flat-square)](https://gitlab.com/DuarteSantos8/opengym/-/pipelines?ref=main)
-[![Release](https://img.shields.io/github/v/release/DuarteSantos8/openGym?style=flat-square)](https://github.com/DuarteSantos8/openGym/releases)
-![Last commit](https://img.shields.io/github/last-commit/DuarteSantos8/openGym?style=flat-square)
-[![GitHub stars](https://img.shields.io/github/stars/DuarteSantos8/openGym?style=flat-square&logo=github&logoColor=white)](https://github.com/DuarteSantos8/openGym/stargazers)
-[![Issues](https://img.shields.io/github/issues/DuarteSantos8/openGym?style=flat-square)](https://github.com/DuarteSantos8/openGym/issues)
-[![Tests](https://github.com/DuarteSantos8/openGym/actions/workflows/test.yml/badge.svg)](https://github.com/DuarteSantos8/openGym/actions/workflows/test.yml)
-[![Mirror](https://github.com/DuarteSantos8/openGym/actions/workflows/mirror.yml/badge.svg)](https://github.com/DuarteSantos8/openGym/actions/workflows/mirror.yml)
-[![Discord](https://img.shields.io/badge/Discord-join-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/e62jY6fwVb)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-support-FFDD00?style=flat-square&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/duartesantos)
-
-</div>
-
-<br>
-
-<div align="center">
-<table>
-<tr>
-<td align="center"><img src="assets/screenshots/home.png" alt="Home" width="230"><br><sub><b>Home</b> — today's workout & weight</sub></td>
-<td align="center"><img src="assets/screenshots/workout.png" alt="Workout" width="230"><br><sub><b>Guided workout</b> — animated demos & sets</sub></td>
-<td align="center"><img src="assets/screenshots/stats.png" alt="Stats" width="230"><br><sub><b>Stats</b> — heatmap, charts & PRs</sub></td>
-</tr>
-</table>
-</div>
-
-<div align="center">
-
-### [🌐 opengym.duarte-santos.ch](https://opengym.duarte-santos.ch) · [📦 Source on GitHub](https://github.com/DuarteSantos8/openGym) · [🦊 GitLab mirror](https://gitlab.com/DuarteSantos8/opengym)
-
-Screenshots, docs and the APK download live on the site.<br>
-<sub>Want to poke at it first? The <a href="https://opengym.duarte-santos.ch/demo/">in-browser
-demo</a> is the real app with example data — no account, nothing to install.</sub>
-
-</div>
-
-## Why
-
-Most workout apps lock your data behind a login on their servers, nag you to upgrade, or
-disappear when the startup does. openGym is the opposite: **it runs on your box, your data
-stays in a folder you control, and it's yours to fork.** It still feels modern — installable
-as a home-screen app, passkey sign-in, offline support, sync across your phone and laptop.
+- **PLAN** — schedule weekly training and edit routines.
+- **TRAIN** — follow workouts, record weights, reps, effort and timed work, and use rest timers.
+- **TRACK** — keep workout history and bodyweight records.
+- **PROGRESS** — review charts, estimated 1RM, activity and muscle analytics.
+- **COACH** — optionally configure the existing AI Coach to propose training changes you review.
+- **OWN YOUR DATA** — use local mobile storage or self-host with passkeys, sync, imports and exports.
 
 ## Features
+
 
 - ⚖️ **Body-weight tracking** — interactive chart with a goal line you set, gains/losses colored by whether they move toward it
 - 🏋️ **Weekly plan** — a routine per weekday, over a library of **1,324 exercises** (searchable, with animated demos), browsable **by muscle** on a body map
@@ -105,201 +62,36 @@ as a home-screen app, passkey sign-in, offline support, sync across your phone a
 - 📦 **Yours to keep** — one-tap JSON export/import, guest mode, **no telemetry**; switching kg ↔ lb offers to convert every stored number
 - 🤖 **Ask an AI about your training** (optional) — an [MCP server](mcp/README.md) lets a client like Claude Desktop or Cursor read your history in your own words: *"what did I bench last week?"*. Read-only, spawned locally by the client, nothing leaves your box. Not in the Docker build — if you don't use an AI assistant, it isn't there
 - 🧠 **An AI coach that writes your plan** (optional, off by default) — answer a handful of questions and it designs a week of routines; later it reads what you actually logged and proposes changes, each one with the evidence behind it. You approve every change and can undo it. It runs on **your** server under **your** provider account — Anthropic, OpenAI, Gemini or any OpenAI-compatible endpoint (Ollama on your LAN counts) with a pasted API key on the default image, or the Claude Agent SDK / Codex CLI on a separate build. The phone app can use your instance or its own key. See [docs/AI_COACH.md](docs/AI_COACH.md)
-- 📱 **Standalone Android app** — the whole tracker as a sideloadable APK: no account, no server, data on the phone, native workout reminders, and an **in-app update check** that downloads the next signed APK and verifies its checksum ([download](https://opengym.duarte-santos.ch))
+- 📱 **Standalone Android source** — the Capacitor project supports local mode, native workout reminders, and the inherited update check. The existing upstream APK is an upstream release, not a Barbell build.
 
-## Quick start (self-host)
 
-You need [Docker](https://docs.docker.com/get-docker/) with Compose.
+## Quick Start — Self-Host Barbell
+
+Install Docker with Compose, then build this branch's modified source locally:
 
 ```bash
-git clone https://github.com/DuarteSantos8/openGym
-cd openGym
+git clone https://github.com/mohammedsunainali/barbell.git
+cd barbell
 cp .env.example .env
-docker compose pull   # grab prebuilt images (amd64 + arm64) — skip to build from source instead
-docker compose up -d
+docker compose up -d --build
 ```
 
-Open **http://localhost:8080**, tap **Create profile**, and you're in. First launch downloads
-the exercise media (~140 MB) once.
+Open `http://localhost:8080` and create a profile. The `media` service downloads exercise images and animations from a third-party dataset at first startup. They are **not** covered by this project's AGPL license; review [NOTICE.md](NOTICE.md) and the source terms before using or redistributing media. To access your instance from other devices with passkeys, configure HTTPS and the appropriate origin/RP settings in [the self-hosting guide](docs/SELF_HOSTING.md). Do not use `docker compose pull` to obtain a Barbell build: the compose image names still reference upstream containers.
 
-> **About that media:** it reaches openGym through
-> [hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset), which
-> redistributes [ExerciseDB v1](https://exercisedb.dev/) — its metadata and instruction text are
-> MIT, but the images and animations are third-party content under *neither* that MIT license nor
-> openGym's AGPL, and their ownership is currently disputed between Gym visual and ExerciseDB.
-> openGym ships none of it: your instance downloads it from upstream. Reusing it yourself,
-> commercially or not, means clearing it with the rights holder — see [NOTICE.md](NOTICE.md).
-The prebuilt images are published twice, from the same tag: `registry.gitlab.com/duartesantos8/opengym/{api,web}`
-(what `docker-compose.yml` pulls) and `ghcr.io/duartesantos8/opengym-{api,web}` on GitHub — swap the
-`image:` lines if you prefer GHCR. Prefer building the images yourself instead of pulling from a
-registry? Drop the `pull` step and run `docker compose up -d --build` — you don't need Node or
-a build step locally either way.
+## Architecture and development
 
-> Want it reachable from your phone over the internet with passkeys? You'll need an HTTPS
-> domain — a two-line change in `.env`. See **[docs/SELF_HOSTING.md](docs/SELF_HOSTING.md)**.
+- `frontend/`: React, Vite, Router and Zustand; the same UI runs in web and Capacitor shells.
+- `api/`: Node API, WebAuthn/passkeys, JSON data files, notifications and optional Coach. [OpenAPI spec](api/openapi.yaml).
+- `web/`: frontend Docker build, nginx static server and API proxy.
+- `mcp/`: optional read-only stdio bridge for user training data.
+- `website/`: static marketing and documentation site.
 
-## Mobile app (no server at all)
+For local frontend development run `cd frontend && npm ci && npm run dev`. Tests: `cd frontend && npm test`; `cd api && npm ci && npm test`; `cd mcp && npm ci && npm test`. See [CONTRIBUTING.md](CONTRIBUTING.md), [migration audit](docs/BARBELL_MIGRATION.md), and [ROADMAP.md](ROADMAP.md).
 
-The same codebase also builds a **standalone mobile app** (Capacitor): no account, no sync,
-no backend — everything stays on the phone, with native workout-day reminders and share-sheet
-backups. Self-hosting gets you multi-device sync and profiles for friends & family; the
-mobile app is the install-and-done flavor.
+## Mobile and releases
 
-- **Android:** [**download the APK**](https://opengym.duarte-santos.ch) — or straight from
-  [GitLab's package registry](https://gitlab.com/DuarteSantos8/opengym/-/packages) or the
-  [GitHub release](https://github.com/DuarteSantos8/openGym/releases/latest), where every
-  build sits next to its `.sha256` — and sideload it; openGym is deliberately not on the Play
-  Store. Or build it yourself: **[docs/MOBILE.md](docs/MOBILE.md)**.
-- **iPhone:** Apple doesn't allow installing apps outside the App Store, so there is no iOS
-  download. Self-host and add it to your home screen from Safari (it's a full PWA), or build
-  the native app onto your own device from Xcode — see **[docs/MOBILE.md](docs/MOBILE.md)**.
+The Android and iOS Capacitor projects exist in `frontend/`. Android local mode and pairing with a self-hosted instance are supported in source. There is no verified Barbell-signed APK or App Store listing yet. The native bundle/application IDs are intentionally retained for compatibility while distribution and signing are reviewed. [Mobile build instructions](docs/MOBILE.md) predate this rebrand and may contain upstream distribution links.
 
-## How it works
+## License and attribution
 
-```
-┌─────────────┐        ┌──────────────────────────────┐
-│  Your phone │──HTTPS─▶│  web  (nginx)                │
-│  / laptop   │        │   ├─ serves the built app    │
-└─────────────┘        │   └─ proxies /api ──────────┐│
-                       └──────────────────────────────┘│
-                                                        ▼
-                                        ┌──────────────────────────┐
-                                        │  api  (Node + WebAuthn)  │
-                                        │   └─ ./data (JSON files) │
-                                        └──────────────────────────┘
-```
-
-- **frontend/** — React + Vite (React Router + Zustand), built to static files **inside Docker**
-- **api/** — Node with no framework, two dependencies (`@simplewebauthn/server` for passkeys, `web-push` for notifications), storing everything as plain JSON files under `./data`
-- **web/** — a multi-stage image that builds the frontend and serves it with nginx, proxying `/api` to the backend so it's all on **one origin** (passkeys require this)
-
-The full HTTP API is documented as an OpenAPI spec in [`api/openapi.yaml`](api/openapi.yaml) — browsable at [opengym.duarte-santos.ch/api.html](https://opengym.duarte-santos.ch/api.html).
-
-## Your data
-
-Lives in `./data` on your host: `db.json` (profiles + public passkeys), `state-<user>.json`
-(each user's plan, workouts, body weight, settings), `audit.log` (the admin activity log — sign-ins
-and admin actions, no IP addresses unless you ask for them) and `secret` (the session-cookie key).
-**Back up `./data` and you've backed up everything.** Passkey private keys never touch the
-server — they stay in your phone's secure hardware / your password manager.
-
-## Configuration
-
-All via `.env` (see `.env.example`):
-
-| Variable      | What it is                                           | Default                 |
-|---------------|------------------------------------------------------|-------------------------|
-| `RP_ID`       | Hostname passkeys are bound to                       | `localhost`             |
-| `ORIGIN`      | Full URL the app is served from                      | `http://localhost:8080` |
-| `WEB_PORT`    | Host port for the web UI                             | `8080`                  |
-| `NGINX_PORT`  | Port the web container listens on, inside the container | `80`                 |
-| `BACKEND`     | Name of the API service that `/api` is proxied to — change it if yours isn't called `api` | `api` |
-| `PORT`        | Port the API listens on; the web container proxies to the same value | `3000`  |
-| `RP_NAME`     | Name shown in the passkey prompt                     | `openGym`               |
-| `SESSION_DAYS`| How long a sign-in lasts, in days                    | `90`                    |
-| `ADMIN_UIDS`  | User ids that get the admin dashboard (comma-separated) | *(none)*             |
-| `INVITE_ONLY` | Require an invite code to create a profile           | *(off)*                 |
-| `ALLOW_GUEST` | Offer "Continue without account" — set `0` to require a profile | *(on)*       |
-| `AUDIT_LOG`   | Record sign-ins and admin actions — set `0` to record nothing | *(on)*        |
-| `AUDIT_MAX`   | Events kept in the activity log; `0` for no limit    | `5000`                  |
-| `AUDIT_DAYS`  | Days kept in the activity log; `0` to keep until `AUDIT_MAX` | `90`            |
-| `AUDIT_IP`    | Record the caller's address: `off`, `net` (network only) or `full` | `off`     |
-| `VAPID_SUBJECT` | Contact URL sent with push notifications           | your `ORIGIN`           |
-| `API_TARGET`  | Which API image to build: `default` (no AI runtime — API-key providers still work) or `coach` (adds the Claude Agent SDK + Codex CLI) | `default`   |
-| `COACH_DISABLED` | Set to `1` to force the AI Coach off instance-wide, whatever the admin toggled | *(unset)* |
-
-Push notification keys are generated on first run and saved to `./data/vapid.json` — nothing to set.
-`DATA_DIR` is pinned to `/data` by `docker-compose.yml` and mapped to `./data` on the host; change the
-host side of that volume, not the variable.
-
-## Roadmap
-
-The plan lives in [ROADMAP.md](ROADMAP.md), and the
-[GitHub milestones](https://github.com/DuarteSantos8/openGym/milestones) hold the issues. **A release every
-two weeks**, each one small and themed: the promised items, editing finished workouts, the session queue,
-programmes and phases, the progression engine, cardio — then **v1.4.0, the foundation: storage moves to a
-database and search is rebuilt, the one compatibility break** — then accounts (password and OIDC login,
-trainer role, MCP write), the iOS app, the Android and health items, and what all of that unlocks
-(pictures for custom exercises, catalogue work, skins, social). Ideas and pull requests welcome.
-
-## Tech
-
-React 19 + Vite (React Router, Zustand) · Node (no framework) · nginx · Docker Compose ·
-WebAuthn · exercise data from [hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)
-(MIT metadata and instructions; media © Gym visual — see [License](#license)).
-No database server, no cloud dependencies — the frontend builds inside Docker, so self-hosting
-stays a one-command `docker compose up`.
-
-The training logic — progression rules, 1RM estimation, how a logged session is read back —
-lives in pure functions under `frontend/src/lib/` with tests next to them: `npm test` in
-`frontend/`. Vitest is a dev dependency; the app itself ships no runtime dependencies beyond
-React, the router and Zustand.
-
-The optional AI Coach (`api/coach/`) is built the same way round: a by-name allowlist decides
-what may leave the server, and a closed-list validator decides what may come back — the model
-can touch routines and the weekly schedule, nothing else, and every change is applied on the
-client only after you approve it. The core of it — `api/coach/core/` — has no Node dependency,
-so the phone app runs the same validator the server does. The in-container AI runtimes live in a
-separate Docker build target; the API-key providers need none. See [docs/AI_COACH.md](docs/AI_COACH.md).
-
-The same pure helpers power an optional MCP server (`mcp/`) that lets an LLM client like
-Claude Desktop read your data over stdio — see [mcp/README.md](mcp/README.md). Opt-in, not
-in the Docker build.
-
-## Community
-
-- **[Discord](https://discord.gg/e62jY6fwVb)** — release announcements, self-hosting help and
-  the back-and-forth that would be a slow issue thread. Quickest way to get an answer.
-- **[Issues](https://github.com/DuarteSantos8/openGym/issues)** — bugs, questions, self-hosting
-  help and ideas. (Issues still open on the GitLab mirror are read too.) Label a question
-  `question` and an idea `idea`, and it gets treated as one rather than as agreed-on work. Use
-  an issue over the Discord for anything the next person should be able to find by searching.
-- **Login trouble?** Most of it is an `RP_ID`/`ORIGIN` mismatch — check
-  [docs/SELF_HOSTING.md](docs/SELF_HOSTING.md) before opening an issue.
-- **[Pull requests](https://github.com/DuarteSantos8/openGym/pulls)** — see
-  [CONTRIBUTING.md](CONTRIBUTING.md). Merge requests already open on the GitLab mirror are still
-  reviewed and land on `main` here; new work, please, as a pull request.
-
-> **GitHub is home; GitLab is a mirror.** `github.com/DuarteSantos8/openGym` was offline from
-> 2026-08-19 to 2026-09-10 while the account was suspended, and the project lived on GitLab in the
-> meantime. It is back, and [gitlab.com/DuarteSantos8/opengym](https://gitlab.com/DuarteSantos8/opengym)
-> is now kept in sync by a GitHub Actions workflow on every push to `main` and every `v*` tag —
-> nothing is pushed or merged there by hand. The mirror stays because its CI builds the release
-> artefacts: the signed APK, the multi-arch images (GitLab registry, mirrored to GHCR) and the SBOMs.
-> (gitea.com/DuarteSantos/openGym is a plain mirror.) In [CHANGELOG.md](CHANGELOG.md), `!NN` is a
-> GitLab merge request from those weeks; `#NN` refers to whichever tracker the report came through.
-
-## Contributing
-
-Issues and PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Good first issues: more starter
-plans, exercise-data languages, import from other trackers. **A ⭐ helps more people find it.**
-
-openGym is free and stays free: AGPL, no subscription, no paid tier, nothing held back for
-sponsors. If it replaced a paid tracker for you and you want to chip in, there's a coffee button
-below (and a badge at the top) — a star, a bug report or a merge request is worth just as much.
-
-<a href="https://buymeacoffee.com/duartesantos" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-       alt="Buy Me A Coffee"
-       style="height: 60px !important;width: 217px !important;">
-</a>
-
-## License
-
-**openGym's own code** is [GNU AGPL v3.0](LICENSE) — free and open source. You can self-host,
-use, modify and share it; if you run a modified version as a network service, you must offer that
-version's source under the same license. Nobody can turn openGym into a closed, proprietary
-product.
-
-**Third-party content is not, and openGym cannot sublicense it.** The exercise metadata and
-instruction text originate from [ExerciseDB v1](https://exercisedb.dev/) and reach openGym through
-[hasaneyldrm/exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset) under the
-**MIT** license. The exercise images and animations are third-party content covered by neither
-that license nor the AGPL, and their ownership is **currently unresolved** — the upstream dataset
-attributes them to [Gym visual](https://gymvisual.com/) under a non-transferable permission, while
-[ExerciseDB/AscendAPI](https://exercisedb.io/faq) claims to be their creator and owner. A
-clarification has been requested. openGym does not redistribute them (your instance fetches them
-at first run) and does not relicense them. To reuse that media yourself, clear it with the rights
-holder first.
-
-Full third-party notices, including the body-diagram geometry: **[NOTICE.md](NOTICE.md)**.
+The inherited openGym code and modifications remain under the [GNU AGPL v3](LICENSE), subject to the original [NOTICE.md](NOTICE.md), including its additional app-store permission. Upstream source and history: [DuarteSantos8/openGym](https://github.com/DuarteSantos8/openGym). Third-party exercise media are separately licensed and are not Barbell-owned. The supplied Barbell identity assets are distinguished from inherited application code in [the brand asset notice](assets/BARBELL_ASSETS.md).

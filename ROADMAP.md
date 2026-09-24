@@ -1,5 +1,17 @@
 # Roadmap
 
+## BARBELL launch roadmap (planned; not yet shipped)
+
+1. Complete the consumer-facing visual migration and verify the workout, Coach, local and paired-server journeys.
+2. Audit native signing identities, existing update URLs and store release status before distributing Barbell builds.
+3. Verify exercise-media usage rights before any Barbell marketing or store listing includes that media.
+4. Publish a Barbell website and signed builds only after CI, device testing, accessibility and distribution review.
+
+## Historical upstream openGym roadmap
+
+The sections below are the original upstream plans and release record. They are retained for context and are not Barbell release commitments.
+
+
 Where openGym is going, in the order it is likely to land. Each block is a GitHub milestone; the
 issues and pull requests attached to it are the plan, this file is the readable summary.
 

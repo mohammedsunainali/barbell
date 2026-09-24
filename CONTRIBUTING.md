@@ -1,6 +1,6 @@
-# Contributing to openGym
+# Contributing to Barbell
 
-Thanks for taking a look! openGym is intentionally small and dependency-light, and the goal is
+Thanks for taking a look! Barbell builds on openGym and remains intentionally small and dependency-light, and the goal is
 to keep it that way — easy to read, easy to self-host.
 
 ## Project layout
@@ -37,7 +37,7 @@ cd frontend && npm test
   State lives in the Zustand store (`src/store`); pure helpers in `src/lib`.
 - **Don't commit** the exercise media (`media/`) or `data/` — they're gitignored.
 - **Test the flow** you touched — click through the affected screens (and the workout flow) in a
-  browser before opening a merge request.
+  browser before opening a pull request.
 - **Training logic gets a unit test.** Anything deciding what you lift next, or reading a logged
   session back, belongs in a pure helper in `src/lib` with tests beside it (`npm test`). These
   rules are easy to get subtly wrong and nearly impossible to verify by clicking — the
@@ -94,3 +94,7 @@ about login/passkeys, include your `RP_ID`/`ORIGIN` (not the `data/` contents) �
 issues are an origin mismatch.
 
 By contributing you agree your work is licensed under the project's [GNU AGPL v3.0](LICENSE).
+
+## Barbell brand and attribution
+
+Use the supplied assets in `assets/barbell/` and the canonical tokens under `frontend/src/brand/` for new UI. Preserve the upstream Git history, AGPL license, `NOTICE.md`, and third-party media attribution. Keep compatibility-sensitive storage, API, package and platform identifiers until a reviewed migration. Open PRs against `mohammedsunainali/barbell`; older upstream community and CI links in this document are historical context.

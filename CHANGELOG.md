@@ -1,5 +1,12 @@
 # Changelog
 
+## BARBELL — rebrand in progress (unreleased)
+
+- Adopted the supplied Barbell identity assets, Poppins product typography, and electric yellow `#FFED00` as the default brand accent.
+- Updated the website, web/PWA metadata, and native display assets while retaining application IDs.
+- Preserved the original history, GNU AGPL license, third-party media notice, and self-hosting architecture.
+
+
 ## v1.3.8 — 2026-09-20
 
 Twenty-four reports closed: the keyboard that would not stay open on iPhone and iPad, notifications
