@@ -1,5 +1,8 @@
 # The AI Coach
 
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
 An optional AI that **designs** a training plan and **revises it from what you actually log**,
 running on your own server under your own provider account, off until an admin turns it on.
 

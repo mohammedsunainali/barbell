@@ -1,5 +1,8 @@
 # Workout view — cards / list / compact
 
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
 The active workout screen (`frontend/src/views/Workout.jsx`) has three layouts, chosen by
 `S.workoutView` (`'cards' | 'list' | 'compact'`, default `'cards'`). It is purely
 presentational — the same `s.active` session, entries and finish path in every layout, and

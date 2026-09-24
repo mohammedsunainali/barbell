@@ -1,5 +1,8 @@
 # Selfhosting with HTTPS
 
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
 This is a rather complex topic of its own, so it lives apart from the [SELF_HOSTING.md](./SELF_HOSTING.md) which focuses on how to run openGym.
 This document takes a more general approach on how to achieve "https at home", it is not necessarily focused on openGym and applies to self hosting in general.
 

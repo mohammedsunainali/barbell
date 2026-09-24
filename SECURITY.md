@@ -1,49 +1,8 @@
-# Security policy
+# Security policy — Barbell source branch
 
-openGym is a self-hosted app: you run the server, you hold the data. This file says which
-versions get fixes, how to report something privately, and — the part most people actually
-need — what the app protects you from and what it doesn't.
+Barbell has no published release or verified private vulnerability-reporting channel yet. Do not send sensitive reports through a public GitHub issue. The repository owner needs to configure and verify a private reporting method before distribution. For non-sensitive bugs, use [this repository’s issues](https://github.com/mohammedsunainali/barbell/issues).
 
-## Supported versions
-
-Only the **latest release**. Releases are semver tags (`v1.0.0` → `v1.2.3`, see
-[CHANGELOG.md](CHANGELOG.md)); there is no LTS or maintenance branch and older tags are never
-patched. A fix ships in the next release and in the `latest` images in GitLab's registry.
-
-Updating a self-hosted instance:
-
-```bash
-git pull && docker compose pull && docker compose up -d
-```
-
-## Reporting a vulnerability
-
-The project lives on GitLab. It has no security-advisory workflow on the free tier, but it does
-have **confidential issues**, and that is the private channel: open an issue at
-<https://gitlab.com/DuarteSantos8/opengym/-/issues/new> and tick **"This issue is confidential"**
-*before* you submit. A confidential issue is readable only by project members — you'll see it,
-I'll see it, nobody else will, and it stays that way if it is later closed.
-
-If you'd rather not put the details in GitLab at all, open a confidential issue saying only
-*"I need an address for a security report"* — no details, no repro, no version — and you'll get
-one back within a couple of days.
-
-> The GitHub repo and its private vulnerability reporting are gone with the suspended account;
-> `github.com/DuarteSantos8/openGym/security/advisories/new` no longer resolves.
-
-Please don't put a working exploit in a *non-confidential* issue if it can be used against other
-people's instances — and not in the Discord either, which is a public room. Everything else (a crash you can only trigger on your own box, a scanner warning)
-is fine as a normal issue.
-
-Useful in a report: the version or commit, whether you're running the prebuilt images or a
-source build, your `RP_ID`/`ORIGIN` and what sits in front of the app, steps to reproduce, and
-what an attacker gets out of it.
-
-**On response times:** this is a hobby project maintained by one person alongside school. There
-is no SLA and no bounty. Expect days rather than hours, and longer during exam periods. If a
-week goes by with no reply, comment on the advisory thread — it's more likely to be a missed
-notification than a decision. If a report goes unfixed and you want to disclose publicly, say so
-in the thread; there's no objection, and no request to sit on it indefinitely.
+The inherited text below describes the openGym implementation’s threat model. Existing self-hosted deployments should follow the guidance for the actual source and image versions they run. The original upstream release and security workflow remain with [DuarteSantos8/openGym](https://github.com/DuarteSantos8/openGym). Barbell has not published or signed an independent APK or container release.
 
 ## In scope
 

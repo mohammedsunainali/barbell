@@ -1,5 +1,8 @@
 # Building the mobile app (iOS / Android)
 
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
 openGym ships in two flavors from the same codebase:
 
 | | **Self-hosted** (this repo's default) | **Mobile app** (`VITE_MOBILE=1`) |

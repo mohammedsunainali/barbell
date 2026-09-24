@@ -5,9 +5,9 @@
 openapi: 3.1.0
 
 info:
-  title: openGym API
+  title: Barbell API (openGym-compatible)
   version: 1.3.8
-  summary: Passkey (WebAuthn) auth + per-user state storage for openGym
+  summary: Passkey (WebAuthn) auth + per-user state storage for Barbell
   description: |
     The backend of [openGym](https://opengym.duarte-santos.ch) — a free, open-source
     gym & body-weight tracker. One Node file, no framework, JSON-file storage,
@@ -62,8 +62,8 @@ info:
     name: AGPL-3.0-or-later
     identifier: AGPL-3.0-or-later
   contact:
-    name: openGym
-    url: https://gitlab.com/DuarteSantos8/opengym
+    name: Barbell source (derived from openGym)
+    url: https://github.com/mohammedsunainali/barbell
 
 servers:
   - url: /

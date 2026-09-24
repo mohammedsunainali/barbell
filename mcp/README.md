@@ -1,7 +1,7 @@
-# openGym MCP server
+# Barbell MCP bridge (inherited openGym protocol)
 
 A [Model Context Protocol](https://modelcontextprotocol.io) bridge that lets an external LLM
-application (Claude Desktop, Cursor, Cline, Continue, etc.) read your openGym profile —
+application (Claude Desktop, Cursor, Cline, Continue, etc.) read your Barbell profile —
 routines, workouts, body-weight log, estimated 1RMs, and muscle balance — directly from your
 self-hosted `./data` directory.
 
@@ -16,6 +16,8 @@ The numbers it answers with are computed by the **same pure functions the React 
 
 > Phase 1 of a multi-phase plan. Read-only today; long-lived token auth + write tools are
 > planned but not shipped yet. See **Roadmap** below.
+
+> Compatibility: `OPENGYM_*` environment variables, the `opengym` client configuration key, and tool identifiers are intentionally retained.
 
 ## Quick start
 
@@ -141,4 +143,4 @@ their own 92 tests in `frontend/src/lib/*.test.js`.
 
 ## License
 
-AGPL-3.0-or-later, same as openGym.
+AGPL-3.0-or-later, preserving the inherited openGym code license.
