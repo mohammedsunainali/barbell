@@ -1,5 +1,10 @@
+@import './brand/tokens.css';
+@font-face{font-family:'Poppins';src:url('/fonts/poppins-400.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Poppins';src:url('/fonts/poppins-500.woff2') format('woff2');font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:'Poppins';src:url('/fonts/poppins-600.woff2') format('woff2');font-style:normal;font-weight:600;font-display:swap}
+@font-face{font-family:'Poppins';src:url('/fonts/poppins-700.woff2') format('woff2');font-style:normal;font-weight:700;font-display:swap}
 /* ============================================================================
-   openGym — design system
+   BARBELL — product theme
    ----------------------------------------------------------------------------
    Rebuilt around four rules, each aimed at a specific "generated" tell in the
    previous sheet:
@@ -20,15 +25,15 @@
 :root {
   /* surfaces — dark is the default */
   --bg:        #000000;
-  --bg-el:     #0e0e10;   /* elevated backdrop (sheets, bars) */
-  --surface:   #1c1c1e;   /* card / grouped-list fill */
-  --surface-2: #2c2c2e;   /* pressed + nested fill */
-  --surface-3: #3a3a3c;   /* controls (segmented track, switch off) */
+  --bg-el:     var(--bb-near-black);   /* elevated backdrop (sheets, bars) */
+  --surface:   var(--bb-surface);   /* card / grouped-list fill */
+  --surface-2: var(--bb-elevated);   /* pressed + nested fill */
+  --surface-3: var(--bb-border);   /* controls (segmented track, switch off) */
 
   /* text */
   --label:     #ffffff;
-  --label-2:   rgba(235,235,245,.60);
-  --label-3:   rgba(235,235,245,.32);
+  --label-2:   var(--bb-text-secondary);
+  --label-3:   var(--bb-text-muted);
   --label-4:   rgba(235,235,245,.18);
 
   /* lines */
@@ -42,8 +47,8 @@
   --purple:#bf5af2; --mint:#63e6e2; --brown:#ac8e68; --grey:#8e8e93;
 
   /* accent (per-account, synced) */
-  --acc:  var(--green);
-  --acc-2:#248a3d;
+  --acc:  var(--bb-yellow);
+  --acc-2:var(--bb-yellow-deep);
   --on-acc:#000000;
   --acc-soft: color-mix(in srgb, var(--acc) 16%, transparent);
   --acc-line: color-mix(in srgb, var(--acc) 38%, transparent);
@@ -91,7 +96,7 @@
 :root[data-accent="pink"]  { --acc:var(--pink);   --acc-2:#d70036; --on-acc:#fff }
 :root[data-accent="red"]   { --acc:var(--red);    --acc-2:#d70015; --on-acc:#fff }
 :root[data-accent="teal"]  { --acc:var(--teal);   --acc-2:#0071a4; --on-acc:#000 }
-:root[data-accent="gold"]  { --acc:var(--yellow); --acc-2:#b25000; --on-acc:#000 }
+:root[data-accent="gold"]  { --acc:var(--bb-yellow); --acc-2:var(--bb-yellow-deep); --on-acc:#000 }
 /* Label colour on a filled accent button is picked per accent by measured contrast,
    not by taste. Button text is 17px/600, so the AA bar is 3:1 (large text). White on
    the light-theme green is 2.22:1 and on teal 2.57:1 — both fail, and green is the
@@ -99,7 +104,8 @@
    9.46 / 8.16 there. Blue, purple, pink and red keep white (3.5–4.1:1), which both
    passes and matches the platform convention. */
 :root[data-theme="light"][data-accent="lime"],
-:root[data-theme="light"][data-accent="teal"]  { --on-acc:#000 }
+:root[data-theme="light"][data-accent="teal"],
+:root[data-theme="light"][data-accent="gold"]  { --on-acc:#000 }
 :root[data-theme="light"][data-accent="sky"],
 :root[data-theme="light"][data-accent="violet"],
 :root[data-theme="light"][data-accent="pink"],
@@ -113,7 +119,7 @@ html{
 }
 body{
   background:var(--bg);color:var(--label);
-  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display','Segoe UI',Roboto,system-ui,sans-serif;
+  font-family:'Poppins',sans-serif;
   font-size:17px;line-height:1.29;letter-spacing:-.01em;
   min-height:100vh;min-height:100dvh;overscroll-behavior-y:none;overflow-x:clip;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
@@ -364,7 +370,7 @@ h4.sec{
 #tabbar button.start .cir{
   width:52px;height:52px;border-radius:50%;background:var(--acc);color:var(--on-acc);
   display:flex;align-items:center;justify-content:center;position:relative;
-  box-shadow:0 6px 18px -4px color-mix(in srgb,var(--acc) 55%,transparent);
+  box-shadow:none;
   transition:transform var(--fast) var(--ease);
 }
 #tabbar button.start:active .cir{transform:scale(.93)}
