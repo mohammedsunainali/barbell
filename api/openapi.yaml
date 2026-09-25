@@ -1,7 +1,8 @@
-# openGym HTTP API — hand-written OpenAPI 3.1 spec.
+# Barbell HTTP API (openGym-compatible) — hand-written OpenAPI 3.1 spec.
 # Source of truth: api/server.js (a single framework-free Node file). Every route the
 # server registers is documented here; if you add a route there, add it here too.
-# Browsable version: https://opengym.duarte-santos.ch/api.html
+# The existing upstream browsable copy is at https://opengym.duarte-santos.ch/api.html;
+# this repository's spec is the Barbell source of truth until a Barbell site is hosted.
 openapi: 3.1.0
 
 info:
@@ -9,9 +10,9 @@ info:
   version: 1.3.8
   summary: Passkey (WebAuthn) auth + per-user state storage for Barbell
   description: |
-    The backend of [openGym](https://opengym.duarte-santos.ch) — a free, open-source
-    gym & body-weight tracker. One Node file, no framework, JSON-file storage,
-    HMAC-signed session cookies.
+    Barbell's openGym-derived, self-hosted HTTP API. One Node file, no framework,
+    JSON-file storage and HMAC-signed session cookies. The
+    [upstream source](https://github.com/DuarteSantos8/openGym) remains separately attributed.
 
     ### Authentication
     Sign-in is **passkey only** (WebAuthn, via `@simplewebauthn/server`). A successful

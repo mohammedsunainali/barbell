@@ -1,6 +1,6 @@
 # Barbell V1 rebrand QA — 2026-09-25
 
-This report covers the source branch `rebrand/barbell-v1`. It is a PR readiness report, not a claim that signed apps, a hosted website, or store listings are live.
+Historical PR-readiness snapshot for the former `rebrand/barbell-v1` source branch. PR #7 was merged into `main` on 2026-09-25. For the current evidence and release gates, use [BARBELL_PROJECT_STATUS.md](BARBELL_PROJECT_STATUS.md). The results below describe the pre-merge checks; they do not establish signed apps, a hosted website or store listings.
 
 | Area | Result |
 |---|---|

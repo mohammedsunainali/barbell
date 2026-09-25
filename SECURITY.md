@@ -1,10 +1,10 @@
-# Security policy — Barbell source branch
+# Security policy — Barbell source
 
 Barbell has not published a signed release or verified a private reporting channel for this fork. For non-sensitive bugs, use [Barbell issues](https://github.com/mohammedsunainali/barbell/issues). **Do not put an exploit, credentials, or private user data in a public issue.** A Barbell-specific confidential channel must be configured and verified before distribution.
 
 ## Supported versions
 
-There is no Barbell release or maintenance promise yet. The upstream project's support and image-update policy applies only to its own releases. If you build this branch yourself, update from its source and rebuild the containers; `docker compose pull` still points at upstream image names.
+There is no Barbell release or maintenance promise yet. The upstream project's support and image-update policy applies only to its own releases. If you build this source yourself, update from this repository and rebuild the containers; `docker compose pull` still points at upstream image names.
 
 ## Reporting a vulnerability
 

@@ -1,0 +1,633 @@
+path	line	class	classification
+.env.example	8	E	legacy visible asset or configuration display
+.env.example	18	E	legacy visible asset or configuration display
+.gitea/ISSUE_TEMPLATE/bug_report.yml	2	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/bug_report.yml	35	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/bug_report.yml	57	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/config.yml	7	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/config.yml	10	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/config.yml	13	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/feature_request.yml	2	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/feature_request.yml	9	B	inherited mirror template; active mirror unverified
+.gitea/ISSUE_TEMPLATE/feature_request.yml	26	B	inherited mirror template; active mirror unverified
+.gitea/workflows/docker-publish.yml	3	C	inherited automation or identifier
+.gitea/workflows/docker-publish.yml	67	C	inherited automation or identifier
+.github/ISSUE_TEMPLATE/bug_report.yml	2	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/bug_report.yml	35	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/bug_report.yml	57	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/config.yml	4	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/config.yml	7	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/config.yml	10	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/config.yml	11	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/config.yml	13	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/feature_request.yml	2	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/feature_request.yml	9	E	fork issue-template copy or destination
+.github/ISSUE_TEMPLATE/feature_request.yml	26	E	fork issue-template copy or destination
+.github/dependabot.yml	3	C	inherited automation or identifier
+.github/workflows/docker-publish.yml	68	C	inherited automation or identifier
+.github/workflows/mirror.yml	3	C	inherited automation or identifier
+.github/workflows/mirror.yml	3	C	inherited automation or identifier
+.github/workflows/mirror.yml	35	C	inherited automation or identifier
+.github/workflows/mirror.yml	58	F	upstream site or repository URL
+.github/workflows/mirror.yml	59	F	upstream site or repository URL
+.github/workflows/pages.yml	1	F	upstream site or repository URL
+.github/workflows/pages.yml	5	F	upstream site or repository URL
+.github/workflows/test.yml	118	C	inherited automation or identifier
+.github/workflows/test.yml	119	C	inherited automation or identifier
+.github/workflows/test.yml	122	C	inherited automation or identifier
+.github/workflows/test.yml	124	C	inherited automation or identifier
+.github/workflows/test.yml	128	C	inherited automation or identifier
+.github/workflows/test.yml	130	C	inherited automation or identifier
+.github/workflows/test.yml	131	C	inherited automation or identifier
+.github/workflows/test.yml	135	C	inherited automation or identifier
+.github/workflows/test.yml	143	C	inherited automation or identifier
+.github/workflows/test.yml	149	C	inherited automation or identifier
+.github/workflows/test.yml	158	C	inherited automation or identifier
+.github/workflows/test.yml	159	C	inherited automation or identifier
+.github/workflows/test.yml	162	C	inherited automation or identifier
+.github/workflows/test.yml	168	C	inherited automation or identifier
+.github/workflows/test.yml	169	C	inherited automation or identifier
+.github/workflows/test.yml	175	C	inherited automation or identifier
+.gitlab-ci.yml	1	C	inherited automation or identifier
+.gitlab-ci.yml	13	C	inherited automation or identifier
+.gitlab-ci.yml	273	C	inherited automation or identifier
+.gitlab-ci.yml	341	C	inherited automation or identifier
+.gitlab-ci.yml	391	C	inherited automation or identifier
+.gitlab-ci.yml	392	C	inherited automation or identifier
+.gitlab-ci.yml	395	C	inherited automation or identifier
+.gitlab-ci.yml	399	C	inherited automation or identifier
+.gitlab-ci.yml	401	C	inherited automation or identifier
+.gitlab-ci.yml	402	C	inherited automation or identifier
+.gitlab-ci.yml	405	C	inherited automation or identifier
+.gitlab-ci.yml	406	C	inherited automation or identifier
+.gitlab-ci.yml	407	C	inherited automation or identifier
+.gitlab-ci.yml	421	C	inherited automation or identifier
+.gitlab-ci.yml	427	C	inherited automation or identifier
+.gitlab-ci.yml	434	C	inherited automation or identifier
+.gitlab-ci.yml	440	C	inherited automation or identifier
+.gitlab-ci.yml	441	C	inherited automation or identifier
+.gitlab-ci.yml	444	C	inherited automation or identifier
+.gitlab-ci.yml	448	C	inherited automation or identifier
+.gitlab-ci.yml	449	C	inherited automation or identifier
+.gitlab-ci.yml	452	C	inherited automation or identifier
+.gitlab-ci.yml	475	C	inherited automation or identifier
+.gitlab-ci.yml	479	C	inherited automation or identifier
+.gitlab-ci.yml	503	C	inherited automation or identifier
+.gitlab-ci.yml	506	C	inherited automation or identifier
+.gitlab-ci.yml	508	C	inherited automation or identifier
+.gitlab-ci.yml	548	C	inherited automation or identifier
+.gitlab-ci.yml	550	C	inherited automation or identifier
+.gitlab-ci.yml	559	C	inherited automation or identifier
+.gitlab-ci.yml	571	C	inherited automation or identifier
+.gitlab-ci.yml	572	C	inherited automation or identifier
+.gitlab-ci.yml	573	C	inherited automation or identifier
+.gitlab-ci.yml	574	C	inherited automation or identifier
+.gitlab-ci.yml	574	C	inherited automation or identifier
+.gitlab-ci.yml	578	C	inherited automation or identifier
+.gitlab-ci.yml	583	C	inherited automation or identifier
+.gitlab-ci.yml	585	C	inherited automation or identifier
+.gitlab-ci.yml	586	C	inherited automation or identifier
+.gitlab-ci.yml	646	C	inherited automation or identifier
+.gitlab-ci.yml	648	C	inherited automation or identifier
+.gitlab-ci.yml	648	C	inherited automation or identifier
+.gitlab-ci.yml	649	C	inherited automation or identifier
+.gitlab-ci.yml	652	C	inherited automation or identifier
+.gitlab-ci.yml	652	C	inherited automation or identifier
+.gitlab-ci.yml	653	C	inherited automation or identifier
+.gitlab-ci.yml	658	C	inherited automation or identifier
+.gitlab-ci.yml	660	C	inherited automation or identifier
+.gitlab-ci.yml	661	C	inherited automation or identifier
+.gitlab-ci.yml	707	C	inherited automation or identifier
+.gitlab-ci.yml	761	C	inherited automation or identifier
+.gitlab-ci.yml	765	C	inherited automation or identifier
+.gitlab-ci.yml	767	C	inherited automation or identifier
+.gitlab-ci.yml	776	C	inherited automation or identifier
+.gitlab-ci.yml	787	C	inherited automation or identifier
+.gitlab-ci.yml	789	F	upstream site or repository URL
+.gitlab-ci.yml	873	C	inherited automation or identifier
+.gitlab-ci.yml	873	C	inherited automation or identifier
+.gitlab-ci.yml	878	C	inherited automation or identifier
+.gitlab-ci.yml	882	C	inherited automation or identifier
+.gitlab-ci.yml	883	C	inherited automation or identifier
+.gitlab-ci.yml	883	C	inherited automation or identifier
+.gitlab-ci.yml	885	C	inherited automation or identifier
+.gitlab-ci.yml	886	C	inherited automation or identifier
+.gitlab-ci.yml	886	C	inherited automation or identifier
+.gitlab-ci.yml	892	C	inherited automation or identifier
+.gitlab-ci.yml	892	C	inherited automation or identifier
+.gitlab-ci.yml	895	C	inherited automation or identifier
+.gitlab-ci.yml	895	C	inherited automation or identifier
+.gitlab/issue_templates/Bug.md	21	C	inherited automation or identifier
+.gitlab/issue_templates/Bug.md	28	C	inherited automation or identifier
+.gitlab/issue_templates/Bug.md	34	C	inherited automation or identifier
+.gitlab/issue_templates/Feature.md	5	C	inherited automation or identifier
+.gitlab/issue_templates/Feature.md	13	C	inherited automation or identifier
+.gitlab/issue_templates/Question.md	14	C	inherited automation or identifier
+CHANGELOG.md	287	B	historical upstream record
+CHANGELOG.md	288	B	historical upstream record
+CHANGELOG.md	309	B	historical upstream record
+CHANGELOG.md	376	B	historical upstream record
+CHANGELOG.md	459	B	historical upstream record
+CHANGELOG.md	773	B	historical upstream record
+CHANGELOG.md	879	B	historical upstream record
+CHANGELOG.md	883	B	historical upstream record
+CHANGELOG.md	916	B	historical upstream record
+CHANGELOG.md	921	B	historical upstream record
+CHANGELOG.md	923	B	historical upstream record
+CHANGELOG.md	927	B	historical upstream record
+CHANGELOG.md	937	B	historical upstream record
+CHANGELOG.md	937	B	historical upstream record
+CHANGELOG.md	938	B	historical upstream record
+CHANGELOG.md	957	B	historical upstream record
+CHANGELOG.md	964	B	historical upstream record
+CHANGELOG.md	964	B	historical upstream record
+CHANGELOG.md	966	B	historical upstream record
+CHANGELOG.md	977	B	historical upstream record
+CHANGELOG.md	984	B	historical upstream record
+CHANGELOG.md	988	B	historical upstream record
+CHANGELOG.md	1015	B	historical upstream record
+CHANGELOG.md	1020	B	historical upstream record
+CHANGELOG.md	1035	B	historical upstream record
+CHANGELOG.md	1036	B	historical upstream record
+CHANGELOG.md	1037	B	historical upstream record
+CHANGELOG.md	1043	B	historical upstream record
+CHANGELOG.md	1050	B	historical upstream record
+CHANGELOG.md	1053	B	historical upstream record
+CHANGELOG.md	1057	B	historical upstream record
+CHANGELOG.md	1064	B	historical upstream record
+CHANGELOG.md	1073	B	historical upstream record
+CHANGELOG.md	1084	B	historical upstream record
+CHANGELOG.md	1085	B	historical upstream record
+CHANGELOG.md	1086	B	historical upstream record
+CHANGELOG.md	1160	B	historical upstream record
+CHANGELOG.md	1175	B	historical upstream record
+CHANGELOG.md	1187	B	historical upstream record
+CHANGELOG.md	1198	B	historical upstream record
+CHANGELOG.md	1208	B	historical upstream record
+CHANGELOG.md	1209	B	historical upstream record
+CHANGELOG.md	1210	B	historical upstream record
+CHANGELOG.md	1252	B	historical upstream record
+CHANGELOG.md	1488	B	historical upstream record
+CHANGELOG.md	1492	B	historical upstream record
+CHANGELOG.md	1503	B	historical upstream record
+CHANGELOG.md	1503	B	historical upstream record
+CHANGELOG.md	1552	B	historical upstream record
+CHANGELOG.md	1552	B	historical upstream record
+CHANGELOG.md	1703	B	historical upstream record
+CLAUDE.md	7	B	inherited architecture note
+CONTRIBUTING.md	3	B	attributed upstream explanation or audit
+NOTICE.md	3	D	legal or third-party notice
+NOTICE.md	4	D	legal or third-party notice
+NOTICE.md	9	D	legal or third-party notice
+NOTICE.md	49	D	legal or third-party notice
+NOTICE.md	51	D	legal or third-party notice
+NOTICE.md	54	D	legal or third-party notice
+NOTICE.md	55	D	legal or third-party notice
+NOTICE.md	64	D	legal or third-party notice
+NOTICE.md	66	D	legal or third-party notice
+NOTICE.md	66	D	legal or third-party notice
+NOTICE.md	95	D	legal or third-party notice
+NOTICE.md	95	D	legal or third-party notice
+NOTICE.md	109	D	legal or third-party notice
+NOTICE.md	111	D	legal or third-party notice
+NOTICE.md	116	D	legal or third-party notice
+NOTICE.md	131	D	legal or third-party notice
+NOTICE.md	137	D	legal or third-party notice
+NOTICE.md	179	D	legal or third-party notice
+NOTICE.md	181	D	legal or third-party notice
+README.md	7	F	upstream site or repository URL
+README.md	7	F	upstream site or repository URL
+README.md	103	F	upstream site or repository URL
+README.md	103	F	upstream site or repository URL
+README.md	111	B	attributed upstream explanation or audit
+ROADMAP.md	10	B	historical upstream record
+ROADMAP.md	15	B	historical upstream record
+ROADMAP.md	25	B	historical upstream record
+SECURITY.md	11	F	upstream site or repository URL
+SECURITY.md	11	F	upstream site or repository URL
+SECURITY.md	15	F	upstream site or repository URL
+SECURITY.md	15	F	upstream site or repository URL
+SECURITY.md	26	B	attributed upstream explanation or audit
+api/Dockerfile	22	C	compatibility identifier, code comment or fixture
+api/Dockerfile	24	F	upstream site or repository URL
+api/Dockerfile	25	F	upstream site or repository URL
+api/Dockerfile	26	F	upstream site or repository URL
+api/coach/adapters/claude.js	37	C	compatibility identifier, code comment or fixture
+api/coach/config.js	19	C	compatibility identifier, code comment or fixture
+api/coach/config.js	101	C	compatibility identifier, code comment or fixture
+api/coach/core/prompts.js	3	C	compatibility identifier, code comment or fixture
+api/coach/core/prompts.js	4	C	compatibility identifier, code comment or fixture
+api/coach/core/system-prompt.js	4	C	compatibility identifier, code comment or fixture
+api/coach/core/validate.js	198	C	compatibility identifier, code comment or fixture
+api/coach/fixture-cli.mjs	77	C	compatibility identifier, code comment or fixture
+api/coach/prompts/common.md	1	C	compatibility identifier, code comment or fixture
+api/coach/prompts/create.md	18	C	compatibility identifier, code comment or fixture
+api/openapi.yaml	1	C	compatibility identifier, code comment or fixture
+api/openapi.yaml	4	F	upstream site or repository URL
+api/openapi.yaml	9	C	compatibility identifier, code comment or fixture
+api/openapi.yaml	13	C	compatibility identifier, code comment or fixture
+api/openapi.yaml	15	F	upstream site or repository URL
+api/openapi.yaml	66	C	compatibility identifier, code comment or fixture
+api/openapi.yaml	71	C	compatibility identifier, code comment or fixture
+api/openapi.yaml	72	C	compatibility identifier, code comment or fixture
+api/push-messages.js	28	C	compatibility identifier, code comment or fixture
+api/push-messages.test.js	12	C	compatibility identifier, code comment or fixture
+api/server.js	1	C	compatibility identifier, code comment or fixture
+api/server.js	1	C	compatibility identifier, code comment or fixture
+api/server.js	27	E	passkey relying-party display default
+api/test/e2e-apikey.test.js	141	C	compatibility identifier, code comment or fixture
+api/test/jobs.test.js	335	C	compatibility identifier, code comment or fixture
+api/test/jobs.test.js	458	C	compatibility identifier, code comment or fixture
+assets/BARBELL_ASSETS.md	3	B	attributed upstream explanation or audit
+assets/banner.svg	1	E	legacy visible asset or configuration display
+docker-compose.yml	1	C	compatibility identifier, code comment or fixture
+docker-compose.yml	7	C	compatibility identifier, code comment or fixture
+docker-compose.yml	22	C	compatibility identifier, code comment or fixture
+docker-compose.yml	23	C	compatibility identifier, code comment or fixture
+docker-compose.yml	38	C	compatibility identifier, code comment or fixture
+docker-compose.yml	64	C	compatibility identifier, code comment or fixture
+docs/AI_COACH.md	4	B	attributed upstream explanation or audit
+docs/API.md	4	B	attributed upstream explanation or audit
+docs/API.md	11	F	upstream site or repository URL
+docs/BARBELL_MIGRATION.md	14	B	attributed upstream explanation or audit
+docs/BARBELL_MIGRATION.md	23	B	attributed upstream explanation or audit
+docs/BARBELL_MIGRATION.md	27	B	attributed upstream explanation or audit
+docs/BARBELL_MIGRATION.md	28	B	attributed upstream explanation or audit
+docs/BARBELL_MIGRATION.md	30	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	14	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	37	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	39	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	73	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	73	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	73	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	83	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	83	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	85	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	93	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	101	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	144	B	attributed upstream explanation or audit
+docs/BARBELL_PROJECT_STATUS.md	156	B	attributed upstream explanation or audit
+docs/BARBELL_V1_QA.md	36	B	attributed upstream explanation or audit
+docs/COMBINE_ROUTINES.md	4	B	attributed upstream explanation or audit
+docs/DATA_IMPORTS.md	4	B	attributed upstream explanation or audit
+docs/DATA_IMPORTS.md	14	F	upstream site or repository URL
+docs/LIST_VIEW.md	4	B	attributed upstream explanation or audit
+docs/MOBILE.md	4	B	attributed upstream explanation or audit
+docs/MOBILE.md	17	B	attributed upstream explanation or audit
+docs/MOBILE.md	87	B	attributed upstream explanation or audit
+docs/MOBILE.md	94	F	upstream site or repository URL
+docs/MOBILE.md	94	F	upstream site or repository URL
+docs/MOBILE.md	95	F	upstream site or repository URL
+docs/MOBILE.md	96	B	attributed upstream explanation or audit
+docs/MOBILE.md	97	B	attributed upstream explanation or audit
+docs/MOBILE.md	97	B	attributed upstream explanation or audit
+docs/MOBILE.md	98	F	upstream site or repository URL
+docs/MOBILE.md	100	F	upstream site or repository URL
+docs/MOBILE.md	103	B	attributed upstream explanation or audit
+docs/MOBILE.md	110	F	upstream site or repository URL
+docs/MOBILE.md	145	B	attributed upstream explanation or audit
+docs/MOBILE.md	164	B	attributed upstream explanation or audit
+docs/SELF_HOSTING.md	4	B	attributed upstream explanation or audit
+docs/SELF_HOSTING.md	95	B	attributed upstream explanation or audit
+docs/SELF_HOSTING.md	218	B	attributed upstream explanation or audit
+docs/SELF_HOSTING.md	244	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	4	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	75	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	91	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	96	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	132	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	133	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	145	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	145	B	attributed upstream explanation or audit
+docs/SELF_HOSTING_HTTPS.md	150	B	attributed upstream explanation or audit
+docs/upstream-website/README.md	3	B	historical upstream record
+docs/upstream-website/about.html	7	B	historical upstream record
+docs/upstream-website/about.html	11	B	historical upstream record
+docs/upstream-website/about.html	12	B	historical upstream record
+docs/upstream-website/about.html	13	B	historical upstream record
+docs/upstream-website/about.html	16	B	historical upstream record
+docs/upstream-website/about.html	17	B	historical upstream record
+docs/upstream-website/about.html	19	B	historical upstream record
+docs/upstream-website/about.html	21	B	historical upstream record
+docs/upstream-website/about.html	22	B	historical upstream record
+docs/upstream-website/about.html	23	B	historical upstream record
+docs/upstream-website/about.html	29	B	historical upstream record
+docs/upstream-website/about.html	98	B	historical upstream record
+docs/upstream-website/about.html	99	B	historical upstream record
+docs/upstream-website/about.html	100	B	historical upstream record
+docs/upstream-website/about.html	127	B	historical upstream record
+docs/upstream-website/about.html	143	B	historical upstream record
+docs/upstream-website/about.html	148	B	historical upstream record
+docs/upstream-website/about.html	159	B	historical upstream record
+docs/upstream-website/about.html	160	B	historical upstream record
+docs/upstream-website/about.html	165	B	historical upstream record
+docs/upstream-website/about.html	170	B	historical upstream record
+docs/upstream-website/api.html	3	B	historical upstream record
+docs/upstream-website/api.html	9	B	historical upstream record
+docs/upstream-website/api.html	10	B	historical upstream record
+docs/upstream-website/api.html	14	B	historical upstream record
+docs/upstream-website/api.html	15	B	historical upstream record
+docs/upstream-website/api.html	16	B	historical upstream record
+docs/upstream-website/api.html	19	B	historical upstream record
+docs/upstream-website/api.html	20	B	historical upstream record
+docs/upstream-website/api.html	22	B	historical upstream record
+docs/upstream-website/api.html	24	B	historical upstream record
+docs/upstream-website/api.html	25	B	historical upstream record
+docs/upstream-website/api.html	26	B	historical upstream record
+docs/upstream-website/api.html	32	B	historical upstream record
+docs/upstream-website/api.html	228	B	historical upstream record
+docs/upstream-website/api.html	230	B	historical upstream record
+docs/upstream-website/api.html	233	B	historical upstream record
+docs/upstream-website/api.html	242	B	historical upstream record
+docs/upstream-website/api.html	249	B	historical upstream record
+docs/upstream-website/api.html	252	B	historical upstream record
+docs/upstream-website/api.html	253	B	historical upstream record
+docs/upstream-website/api.html	2274	B	historical upstream record
+docs/upstream-website/api.html	2279	B	historical upstream record
+docs/upstream-website/docs.html	7	B	historical upstream record
+docs/upstream-website/docs.html	11	B	historical upstream record
+docs/upstream-website/docs.html	12	B	historical upstream record
+docs/upstream-website/docs.html	13	B	historical upstream record
+docs/upstream-website/docs.html	16	B	historical upstream record
+docs/upstream-website/docs.html	17	B	historical upstream record
+docs/upstream-website/docs.html	19	B	historical upstream record
+docs/upstream-website/docs.html	21	B	historical upstream record
+docs/upstream-website/docs.html	22	B	historical upstream record
+docs/upstream-website/docs.html	23	B	historical upstream record
+docs/upstream-website/docs.html	29	B	historical upstream record
+docs/upstream-website/docs.html	32	B	historical upstream record
+docs/upstream-website/docs.html	32	B	historical upstream record
+docs/upstream-website/docs.html	32	B	historical upstream record
+docs/upstream-website/docs.html	32	B	historical upstream record
+docs/upstream-website/docs.html	32	B	historical upstream record
+docs/upstream-website/docs.html	93	B	historical upstream record
+docs/upstream-website/docs.html	184	B	historical upstream record
+docs/upstream-website/docs.html	187	B	historical upstream record
+docs/upstream-website/docs.html	188	B	historical upstream record
+docs/upstream-website/docs.html	202	B	historical upstream record
+docs/upstream-website/docs.html	220	B	historical upstream record
+docs/upstream-website/docs.html	222	B	historical upstream record
+docs/upstream-website/docs.html	228	B	historical upstream record
+docs/upstream-website/docs.html	229	B	historical upstream record
+docs/upstream-website/docs.html	231	B	historical upstream record
+docs/upstream-website/docs.html	235	B	historical upstream record
+docs/upstream-website/docs.html	249	B	historical upstream record
+docs/upstream-website/docs.html	255	B	historical upstream record
+docs/upstream-website/docs.html	442	B	historical upstream record
+docs/upstream-website/docs.html	443	B	historical upstream record
+docs/upstream-website/docs.html	457	B	historical upstream record
+docs/upstream-website/docs.html	463	B	historical upstream record
+docs/upstream-website/docs.html	491	B	historical upstream record
+docs/upstream-website/docs.html	524	B	historical upstream record
+docs/upstream-website/docs.html	537	B	historical upstream record
+docs/upstream-website/docs.html	540	B	historical upstream record
+docs/upstream-website/docs.html	541	B	historical upstream record
+docs/upstream-website/docs.html	541	B	historical upstream record
+docs/upstream-website/docs.html	550	B	historical upstream record
+docs/upstream-website/docs.html	624	B	historical upstream record
+docs/upstream-website/docs.html	640	B	historical upstream record
+docs/upstream-website/docs.html	663	B	historical upstream record
+docs/upstream-website/docs.html	664	B	historical upstream record
+docs/upstream-website/docs.html	711	B	historical upstream record
+docs/upstream-website/docs.html	714	B	historical upstream record
+docs/upstream-website/docs.html	735	B	historical upstream record
+docs/upstream-website/docs.html	756	B	historical upstream record
+docs/upstream-website/docs.html	777	B	historical upstream record
+docs/upstream-website/docs.html	790	B	historical upstream record
+docs/upstream-website/docs.html	800	B	historical upstream record
+docs/upstream-website/docs.html	827	B	historical upstream record
+docs/upstream-website/docs.html	839	B	historical upstream record
+docs/upstream-website/docs.html	844	B	historical upstream record
+docs/upstream-website/docs.html	883	B	historical upstream record
+docs/upstream-website/docs.html	927	B	historical upstream record
+docs/upstream-website/docs.html	930	B	historical upstream record
+docs/upstream-website/docs.html	931	B	historical upstream record
+docs/upstream-website/docs.html	932	B	historical upstream record
+docs/upstream-website/docs.html	934	B	historical upstream record
+docs/upstream-website/docs.html	938	B	historical upstream record
+docs/upstream-website/docs.html	942	B	historical upstream record
+docs/upstream-website/docs.html	944	B	historical upstream record
+docs/upstream-website/docs.html	946	B	historical upstream record
+docs/upstream-website/docs.html	952	B	historical upstream record
+docs/upstream-website/docs.html	957	B	historical upstream record
+docs/upstream-website/site.js	1	B	historical upstream record
+docs/upstream-website/site.js	216	B	historical upstream record
+docs/upstream-website/sitemap.xml	4	B	historical upstream record
+docs/upstream-website/sitemap.xml	8	B	historical upstream record
+docs/upstream-website/sitemap.xml	12	B	historical upstream record
+docs/upstream-website/sitemap.xml	16	B	historical upstream record
+docs/upstream-website/styles.css	625	B	historical upstream record
+frontend/android/app/build.gradle	4	C	compatibility identifier, code comment or fixture
+frontend/android/app/build.gradle	7	C	compatibility identifier, code comment or fixture
+frontend/android/app/src/debug/res/values/strings.xml	4	C	compatibility identifier, code comment or fixture
+frontend/android/app/src/debug/res/values/strings.xml	5	E	visible filename, debug label or print job
+frontend/android/app/src/debug/res/values/strings.xml	6	E	visible filename, debug label or print job
+frontend/android/app/src/main/java/ch/duartesantos/opengym/InstallPlugin.java	1	C	compatibility identifier, code comment or fixture
+frontend/android/app/src/main/java/ch/duartesantos/opengym/InstallPlugin.java	19	C	compatibility identifier, code comment or fixture
+frontend/android/app/src/main/java/ch/duartesantos/opengym/MainActivity.java	1	C	compatibility identifier, code comment or fixture
+frontend/android/app/src/main/java/ch/duartesantos/opengym/PrintPlugin.java	1	C	compatibility identifier, code comment or fixture
+frontend/android/app/src/main/java/ch/duartesantos/opengym/PrintPlugin.java	40	E	visible filename, debug label or print job
+frontend/android/app/src/main/res/values/strings.xml	5	C	compatibility identifier, code comment or fixture
+frontend/android/app/src/main/res/values/strings.xml	6	C	compatibility identifier, code comment or fixture
+frontend/capacitor.config.json	2	C	compatibility identifier, code comment or fixture
+frontend/ios/App/App.xcodeproj/project.pbxproj	369	C	compatibility identifier, code comment or fixture
+frontend/ios/App/App.xcodeproj/project.pbxproj	388	C	compatibility identifier, code comment or fixture
+frontend/ios/App/App/PrintPlugin.swift	24	E	visible filename, debug label or print job
+frontend/package-lock.json	2	C	compatibility identifier, code comment or fixture
+frontend/package-lock.json	8	C	compatibility identifier, code comment or fixture
+frontend/package.json	2	C	compatibility identifier, code comment or fixture
+frontend/public/sw.js	1	C	compatibility identifier, code comment or fixture
+frontend/public/sw.js	6	C	compatibility identifier, code comment or fixture
+frontend/public/sw.js	41	C	compatibility identifier, code comment or fixture
+frontend/src/components/Icon.jsx	1	C	compatibility identifier, code comment or fixture
+frontend/src/components/Modals.jsx	121	C	compatibility identifier, code comment or fixture
+frontend/src/components/Modals.test.jsx	60	C	compatibility identifier, code comment or fixture
+frontend/src/components/Modals.test.jsx	150	C	compatibility identifier, code comment or fixture
+frontend/src/components/ui.jsx	1	C	compatibility identifier, code comment or fixture
+frontend/src/lib/api-base.test.js	2	C	compatibility identifier, code comment or fixture
+frontend/src/lib/api.js	21	C	compatibility identifier, code comment or fixture
+frontend/src/lib/coach-demo.js	106	C	compatibility identifier, code comment or fixture
+frontend/src/lib/coach-device.js	13	C	compatibility identifier, code comment or fixture
+frontend/src/lib/coach-local.test.js	170	C	compatibility identifier, code comment or fixture
+frontend/src/lib/coach.test.js	476	C	compatibility identifier, code comment or fixture
+frontend/src/lib/coach.test.js	604	C	compatibility identifier, code comment or fixture
+frontend/src/lib/demoSeed.test.js	1	C	compatibility identifier, code comment or fixture
+frontend/src/lib/hevy-id-map.js	2	C	compatibility identifier, code comment or fixture
+frontend/src/lib/import-csv.js	366	C	compatibility identifier, code comment or fixture
+frontend/src/lib/import-hevy.js	104	C	compatibility identifier, code comment or fixture
+frontend/src/lib/import-hevy.js	295	C	compatibility identifier, code comment or fixture
+frontend/src/lib/import-hevy.js	305	C	compatibility identifier, code comment or fixture
+frontend/src/lib/import-hevy.test.js	259	C	compatibility identifier, code comment or fixture
+frontend/src/lib/mobile.js	34	C	compatibility identifier, code comment or fixture
+frontend/src/lib/mobile.js	52	C	compatibility identifier, code comment or fixture
+frontend/src/lib/mobile.js	55	C	compatibility identifier, code comment or fixture
+frontend/src/lib/mobile.js	205	E	visible filename, debug label or print job
+frontend/src/lib/plan-share.js	4	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.js	182	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.js	197	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	42	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	53	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	127	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	134	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	144	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	149	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	177	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	195	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	234	C	compatibility identifier, code comment or fixture
+frontend/src/lib/plan-share.test.js	244	C	compatibility identifier, code comment or fixture
+frontend/src/lib/remote.js	3	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.js	10	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.js	89	F	explicit upstream updater or download
+frontend/src/lib/update.js	137	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	79	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	93	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	94	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	99	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	113	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	118	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	118	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	132	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	132	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	148	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	154	F	upstream site or repository URL
+frontend/src/lib/update.test.js	154	F	upstream site or repository URL
+frontend/src/lib/update.test.js	158	F	upstream site or repository URL
+frontend/src/lib/update.test.js	158	F	upstream site or repository URL
+frontend/src/lib/update.test.js	162	F	upstream site or repository URL
+frontend/src/lib/update.test.js	162	F	upstream site or repository URL
+frontend/src/lib/update.test.js	166	F	upstream site or repository URL
+frontend/src/lib/update.test.js	166	F	upstream site or repository URL
+frontend/src/lib/update.test.js	173	F	upstream site or repository URL
+frontend/src/lib/update.test.js	174	F	upstream site or repository URL
+frontend/src/lib/update.test.js	179	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	180	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	180	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	181	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	181	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	186	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	187	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	187	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	188	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	188	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	200	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	200	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	201	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	201	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	207	C	compatibility identifier, code comment or fixture
+frontend/src/lib/update.test.js	207	C	compatibility identifier, code comment or fixture
+frontend/src/locales/de.js	1243	E	legacy translated release/download string
+frontend/src/locales/de.js	1243	E	legacy translated release/download string
+frontend/src/locales/es.js	1223	E	legacy translated release/download string
+frontend/src/locales/es.js	1223	E	legacy translated release/download string
+frontend/src/locales/fr.js	1223	E	legacy translated release/download string
+frontend/src/locales/fr.js	1223	E	legacy translated release/download string
+frontend/src/locales/hi.js	1223	E	legacy translated release/download string
+frontend/src/locales/hi.js	1223	E	legacy translated release/download string
+frontend/src/locales/hu.js	1226	E	legacy translated release/download string
+frontend/src/locales/hu.js	1226	E	legacy translated release/download string
+frontend/src/locales/it.js	1223	E	legacy translated release/download string
+frontend/src/locales/it.js	1223	E	legacy translated release/download string
+frontend/src/locales/ko.js	1223	E	legacy translated release/download string
+frontend/src/locales/ko.js	1223	E	legacy translated release/download string
+frontend/src/locales/pl.js	1223	E	legacy translated release/download string
+frontend/src/locales/pl.js	1223	E	legacy translated release/download string
+frontend/src/locales/pt.js	1223	E	legacy translated release/download string
+frontend/src/locales/pt.js	1223	E	legacy translated release/download string
+frontend/src/locales/ru.js	1223	E	legacy translated release/download string
+frontend/src/locales/ru.js	1223	E	legacy translated release/download string
+frontend/src/locales/th.js	1234	E	legacy translated release/download string
+frontend/src/locales/th.js	1234	E	legacy translated release/download string
+frontend/src/locales/tr.js	1223	E	legacy translated release/download string
+frontend/src/locales/tr.js	1223	E	legacy translated release/download string
+frontend/src/locales/zh.js	1223	E	legacy translated release/download string
+frontend/src/locales/zh.js	1223	E	legacy translated release/download string
+frontend/src/sheets.jsx	1520	E	visible filename, debug label or print job
+frontend/src/sheets.plan-import-toast.test.jsx	27	C	compatibility identifier, code comment or fixture
+frontend/src/views/Admin.jsx	50	C	compatibility identifier, code comment or fixture
+frontend/src/views/CoachChat.test.jsx	57	C	compatibility identifier, code comment or fixture
+frontend/src/views/Settings.jsx	118	F	explicit upstream updater or download
+frontend/src/views/Settings.jsx	124	E	visible filename, debug label or print job
+frontend/src/views/Settings.jsx	421	F	explicit upstream updater or download
+frontend/src/views/Settings.jsx	426	F	explicit upstream updater or download
+frontend/src/views/Settings.jsx	427	F	explicit upstream updater or download
+frontend/src/views/Settings.update.test.jsx	26	C	compatibility identifier, code comment or fixture
+frontend/src/views/Settings.update.test.jsx	89	F	explicit upstream updater or download
+frontend/vite.config.js	22	C	compatibility identifier, code comment or fixture
+frontend/vite.config.js	38	C	compatibility identifier, code comment or fixture
+mcp/README.md	1	C	compatibility identifier, code comment or fixture
+mcp/README.md	10	C	compatibility identifier, code comment or fixture
+mcp/README.md	20	C	compatibility identifier, code comment or fixture
+mcp/README.md	20	C	compatibility identifier, code comment or fixture
+mcp/README.md	41	C	compatibility identifier, code comment or fixture
+mcp/README.md	41	C	compatibility identifier, code comment or fixture
+mcp/README.md	52	C	compatibility identifier, code comment or fixture
+mcp/README.md	56	C	compatibility identifier, code comment or fixture
+mcp/README.md	57	C	compatibility identifier, code comment or fixture
+mcp/README.md	146	C	compatibility identifier, code comment or fixture
+mcp/package-lock.json	2	C	compatibility identifier, code comment or fixture
+mcp/package-lock.json	8	C	compatibility identifier, code comment or fixture
+mcp/package-lock.json	16	C	compatibility identifier, code comment or fixture
+mcp/package.json	2	C	compatibility identifier, code comment or fixture
+mcp/package.json	6	C	compatibility identifier, code comment or fixture
+mcp/package.json	10	C	compatibility identifier, code comment or fixture
+mcp/src/index.js	2	C	compatibility identifier, code comment or fixture
+mcp/src/index.js	11	C	compatibility identifier, code comment or fixture
+mcp/src/index.js	15	C	compatibility identifier, code comment or fixture
+mcp/src/index.js	21	C	compatibility identifier, code comment or fixture
+mcp/src/index.js	23	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	1	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	7	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	26	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	28	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	30	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	32	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	42	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	46	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	46	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	51	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	51	C	compatibility identifier, code comment or fixture
+mcp/src/state.js	59	C	compatibility identifier, code comment or fixture
+mcp/src/tools.js	86	C	compatibility identifier, code comment or fixture
+mcp/src/tools.js	159	C	compatibility identifier, code comment or fixture
+mcp/src/tools.js	574	C	compatibility identifier, code comment or fixture
+renovate.json	5	C	dependency automation identifier
+scripts/build-api-docs.mjs	461	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	467	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	468	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	472	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	473	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	474	F	upstream site or repository URL
+scripts/build-api-docs.mjs	477	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	478	F	upstream site or repository URL
+scripts/build-api-docs.mjs	480	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	482	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	483	F	upstream site or repository URL
+scripts/build-api-docs.mjs	484	F	upstream site or repository URL
+scripts/build-api-docs.mjs	490	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	500	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	509	F	upstream site or repository URL
+scripts/build-api-docs.mjs	530	F	upstream site or repository URL
+scripts/build-api-docs.mjs	562	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	565	F	upstream site or repository URL
+scripts/build-api-docs.mjs	574	C	technical script or inherited source pointer
+scripts/build-api-docs.mjs	607	F	upstream site or repository URL
+scripts/build-api-docs.mjs	611	F	upstream site or repository URL
+scripts/build-api-docs.mjs	612	F	upstream site or repository URL
+scripts/build-hevy-id-map.mjs	4	C	technical script or inherited source pointer
+scripts/build-hevy-id-map.mjs	234	C	technical script or inherited source pointer
+scripts/fetch-media.sh	6	C	technical script or inherited source pointer
+scripts/fetch-media.sh	15	C	technical script or inherited source pointer
+scripts/fetch-media.sh	15	C	technical script or inherited source pointer
+scripts/translate-pt-br-stage.mjs	95	C	technical script or inherited source pointer
+web/Dockerfile	33	C	compatibility identifier, code comment or fixture
+web/Dockerfile	35	F	upstream site or repository URL
+web/Dockerfile	36	F	upstream site or repository URL
+web/Dockerfile	37	F	upstream site or repository URL
+web/nginx.conf.template	1	C	compatibility identifier, code comment or fixture
+web/nginx.conf.template	63	C	compatibility identifier, code comment or fixture
+website/about.html	2	B	attributed upstream explanation or audit
+website/about.html	4	F	upstream site or repository URL
+website/about.html	4	F	upstream site or repository URL
+website/index.html	24	F	upstream site or repository URL
+website/index.html	24	F	upstream site or repository URL
+website/llms.txt	3	B	attributed upstream explanation or audit

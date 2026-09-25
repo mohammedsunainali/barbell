@@ -6,7 +6,7 @@
 
 Barbell is an open-source workout tracker built on the [openGym project](https://github.com/DuarteSantos8/openGym). Plan your training, follow guided workouts, log sets and bodyweight, see your progress, and optionally use an AI Coach. Run the web app on your own server or use the existing Capacitor mobile code in local mode. This repository retains the upstream Git history and [GNU AGPL v3](LICENSE) license.
 
-The Barbell rebrand is source work in progress. The upstream public site, APK and container images are **upstream releases**, not Barbell releases. There is no Barbell production domain or store download claimed here.
+The Barbell rebrand is merged into `main`, but native store builds and a production website have not been released. The upstream public site, APK and container images are **upstream releases**, not Barbell releases. See the [current project status](docs/BARBELL_PROJECT_STATUS.md) for verified build and release gates.
 
 ## How It Works
 

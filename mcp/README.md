@@ -38,7 +38,7 @@ to answer for — its user id is in `./data/db.json` under `users[].id`:
 node src/index.js
 
 # multi-user instance, or just to be explicit:
-OPENGYM_UID=<your-uid> OPENGYM_DATA=/path/to/openGym/data node src/index.js
+OPENGYM_UID=<your-uid> OPENGYM_DATA=/path/to/barbell/data node src/index.js
 ```
 
 ### 3. Register with your LLM client
@@ -51,9 +51,9 @@ Add the server to your LLM client's MCP config. For Claude Desktop, edit
   "mcpServers": {
     "opengym": {
       "command": "node",
-      "args": ["/absolute/path/to/openGym/mcp/src/index.js"],
+      "args": ["/absolute/path/to/barbell/mcp/src/index.js"],
       "env": {
-        "OPENGYM_DATA": "/absolute/path/to/openGym/data",
+        "OPENGYM_DATA": "/absolute/path/to/barbell/data",
         "OPENGYM_UID": "<your-uid>"   // optional — auto-detected if you have one profile
       }
     }
@@ -64,7 +64,7 @@ Add the server to your LLM client's MCP config. For Claude Desktop, edit
 For Cursor and other MCP-compatible clients, see the client's MCP docs — the same `command` +
 `args` + `env` shape is what every stdio MCP server expects.
 
-Restart the client; you should see the openGym tools appear with "serving profile \<name\>" on
+Restart the client; you should see the compatible MCP tools appear with "serving profile \<name\>" on
 the server's stderr.
 
 ## Tools
