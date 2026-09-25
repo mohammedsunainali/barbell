@@ -18,7 +18,7 @@ export function normalizeServerUrl(raw) {
   const withScheme = /^[a-z][a-z0-9+.-]*:\/\//i.test(s) ? s : 'https://' + s
   try {
     const u = new URL(withScheme)
-    if (!u.hostname) return null
+    if (!u.hostname || !['https:', 'http:'].includes(u.protocol) || u.username || u.password) return null
     return u.origin
   } catch (e) { return null }
 }
