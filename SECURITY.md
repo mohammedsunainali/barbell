@@ -1,49 +1,18 @@
-# Security policy
+# Security policy — Barbell source branch
 
-openGym is a self-hosted app: you run the server, you hold the data. This file says which
-versions get fixes, how to report something privately, and — the part most people actually
-need — what the app protects you from and what it doesn't.
+Barbell has not published a signed release or verified a private reporting channel for this fork. For non-sensitive bugs, use [Barbell issues](https://github.com/mohammedsunainali/barbell/issues). **Do not put an exploit, credentials, or private user data in a public issue.** A Barbell-specific confidential channel must be configured and verified before distribution.
 
 ## Supported versions
 
-Only the **latest release**. Releases are semver tags (`v1.0.0` → `v1.2.3`, see
-[CHANGELOG.md](CHANGELOG.md)); there is no LTS or maintenance branch and older tags are never
-patched. A fix ships in the next release and in the `latest` images in GitLab's registry.
-
-Updating a self-hosted instance:
-
-```bash
-git pull && docker compose pull && docker compose up -d
-```
+There is no Barbell release or maintenance promise yet. The upstream project's support and image-update policy applies only to its own releases. If you build this branch yourself, update from its source and rebuild the containers; `docker compose pull` still points at upstream image names.
 
 ## Reporting a vulnerability
 
-The project lives on GitLab. It has no security-advisory workflow on the free tier, but it does
-have **confidential issues**, and that is the private channel: open an issue at
-<https://gitlab.com/DuarteSantos8/opengym/-/issues/new> and tick **"This issue is confidential"**
-*before* you submit. A confidential issue is readable only by project members — you'll see it,
-I'll see it, nobody else will, and it stays that way if it is later closed.
+The upstream openGym project documents a **confidential GitLab issue** route at [its issue form](https://gitlab.com/DuarteSantos8/opengym/-/issues/new): select **“This issue is confidential” before submitting**. Upstream also offers a confidential issue requesting a private address without including details. These routes belong to the upstream maintainers and are preserved here for reports affecting their project; they are not a verified private reporting route to the Barbell owner.
 
-If you'd rather not put the details in GitLab at all, open a confidential issue saying only
-*"I need an address for a security report"* — no details, no repro, no version — and you'll get
-one back within a couple of days.
+For a vulnerability specific to this fork, do not submit sensitive details through Barbell's public issue tracker. A private Barbell reporting route remains a release blocker. A useful report should include the affected commit, source or upstream image version, `RP_ID`/`ORIGIN` configuration without secrets, reproduction steps, and potential impact.
 
-> The GitHub repo and its private vulnerability reporting are gone with the suspended account;
-> `github.com/DuarteSantos8/openGym/security/advisories/new` no longer resolves.
-
-Please don't put a working exploit in a *non-confidential* issue if it can be used against other
-people's instances — and not in the Discord either, which is a public room. Everything else (a crash you can only trigger on your own box, a scanner warning)
-is fine as a normal issue.
-
-Useful in a report: the version or commit, whether you're running the prebuilt images or a
-source build, your `RP_ID`/`ORIGIN` and what sits in front of the app, steps to reproduce, and
-what an attacker gets out of it.
-
-**On response times:** this is a hobby project maintained by one person alongside school. There
-is no SLA and no bounty. Expect days rather than hours, and longer during exam periods. If a
-week goes by with no reply, comment on the advisory thread — it's more likely to be a missed
-notification than a decision. If a report goes unfixed and you want to disclose publicly, say so
-in the thread; there's no objection, and no request to sit on it indefinitely.
+The implementation threat model below is inherited from upstream. Existing self-hosted deployments should follow guidance for the actual source and image version they run. Upstream source: [DuarteSantos8/openGym](https://github.com/DuarteSantos8/openGym).
 
 ## In scope
 
@@ -80,7 +49,7 @@ in the thread; there's no objection, and no request to sit on it indefinitely.
 
 ## Security model
 
-Read this before hosting openGym for anyone other than yourself.
+Read this before hosting Barbell for anyone other than yourself.
 
 ### What it does
 
@@ -132,7 +101,7 @@ Read this before hosting openGym for anyone other than yourself.
   subscriptions, invite codes), one `state-<uid>.json` per user with their complete workout
   history and body-weight log, `audit.log`, `secret`, and `vapid.json`. Anyone who can read that folder — you,
   whoever holds the backups, whoever gets into the host — can read every user's data, and with
-  `secret` can mint a valid session cookie for any account. **If you host openGym for other
+  `secret` can mint a valid session cookie for any account. **If you host Barbell for other
   people, they are trusting you exactly as much as they'd trust any server operator.** With the
   activity log on, `./data/audit.log` adds everyone's sign-in times to that — worth remembering
   before an archive of `./data` goes somewhere you don't run.

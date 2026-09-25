@@ -1,5 +1,8 @@
 # Importing Data
 
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
 ## Plans
 
 Plans/routines can be imported from a plain text json file.  
@@ -43,7 +46,7 @@ These apps have been tested to work without adjustments to the column names:
 If you have **Hevy Pro**, you can skip the CSV and import straight from Hevy:
 
 1. Open [Hevy → Settings → Developer](https://hevy.com/settings?developer) and create an API key
-2. In openGym: **Settings → Import from Hevy**
+2. In Barbell: **Settings → Import from Hevy**
 3. Paste the key (used only for that import — it is not saved)
 4. Choose whether to bring **workouts**, **routines**, **weigh-ins**, or any mix, then confirm
 

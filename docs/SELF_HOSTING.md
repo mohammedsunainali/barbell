@@ -1,6 +1,9 @@
-# Self-hosting openGym
+# Self-hosting Barbell
 
-openGym is two small containers (a web server and an API) plus a folder of your data.
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
+Barbell uses two small containers (a web server and an API) plus a folder of your data.
 This guide takes you from "just cloned it" to "using it from my phone over the internet".
 
 ## 1. Run it locally (5 minutes)
@@ -8,17 +11,15 @@ This guide takes you from "just cloned it" to "using it from my phone over the i
 Requirements: [Docker](https://docs.docker.com/get-docker/) with the Compose plugin.
 
 ```bash
-git clone https://github.com/DuarteSantos8/openGym   # or https://gitlab.com/DuarteSantos8/opengym — same repo
-cd openGym
+git clone https://github.com/mohammedsunainali/barbell.git
+cd barbell
 cp .env.example .env
-docker compose pull   # prebuilt images from GitLab's registry (amd64 + arm64; the same images are on ghcr.io) — or skip and build from source
-docker compose up -d
+docker compose up -d --build
 ```
 
 - First start downloads the exercise images/GIFs (~140 MB) once into `media/img` and `media/gif`.
 - Open **http://localhost:8080** and create a profile with a passkey.
-- Rather build from source than pull prebuilt images? Skip `docker compose pull` and run
-  `docker compose up -d --build` instead — no Node needed locally either way.
+- This branch builds the web and API images from source; existing registry images belong to upstream.
 
 Check it's healthy:
 
@@ -31,14 +32,14 @@ Logs: `docker compose logs -f`. Stop: `docker compose down`.
 
 ## 2. Understand the passkey requirement (important)
 
-openGym signs you in with **passkeys** (WebAuthn). Browsers enforce two rules:
+Barbell signs you in with **passkeys** (WebAuthn). Browsers enforce two rules:
 
 1. Passkeys are bound to an exact **hostname** (`RP_ID`).
 2. They only work over **HTTPS** — with one exception: `http://localhost`.
 
 So `http://localhost:8080` works on the machine running Docker, but **another device (your
 phone) cannot use `http://<your-LAN-ip>:8080`** — that's neither localhost nor HTTPS, so the
-passkey prompt won't appear. To use openGym from your phone you need a real HTTPS hostname.
+passkey prompt won't appear. To use Barbell from your phone you need a real HTTPS hostname.
 
 (You can still open it over LAN in **guest mode**, which stores data only in that browser.)
 
@@ -61,7 +62,7 @@ you're poking at the API directly:
 
 > Want HTTPS **without** exposing anything to the internet — a valid certificate on a LAN-only address? See [SELF_HOSTING_HTTPS.md](./SELF_HOSTING_HTTPS.md) (wildcard cert via a DNS challenge, Caddy in front).
 
-Put openGym behind something that terminates TLS for a hostname you control, then point it at
+Put Barbell behind something that terminates TLS for a hostname you control, then point it at
 the `web` container. Pick whichever you already run:
 
 ### Option A — Cloudflare Tunnel (no open ports)
@@ -80,7 +81,7 @@ gym.example.com {
 ### Option C — Traefik / nginx / Nginx Proxy Manager
 
 Route `gym.example.com` (HTTPS) → `web:80` (or `<docker-host>:8080`). Any reverse proxy works —
-openGym only needs the browser to reach it over `https://gym.example.com`. If that proxy caps
+Barbell only needs the browser to reach it over `https://gym.example.com`. If that proxy caps
 request bodies (nginx does, at 1 MiB by default), allow at least 5 MiB on `/api/` — the app syncs
 its whole history in one PUT; the bundled web image already allows 5 MiB, matching the API.
 
@@ -91,7 +92,7 @@ Then set your domain in `.env` and restart:
 RP_ID=gym.example.com
 ORIGIN=https://gym.example.com
 WEB_PORT=8080
-RP_NAME=openGym
+RP_NAME=openGym    # inherited passkey display default; change only after reviewing existing credentials
 ```
 
 ```bash
@@ -171,7 +172,7 @@ that is not the default here.
 
 ## 5. Fitting it into an existing stack
 
-The defaults assume openGym is the only thing here: a service called `api` on port 3000, and nginx
+The defaults assume Barbell is the only thing here: a service called `api` on port 3000, and nginx
 on port 80 inside its container. If you are merging this into a compose file that already has an
 `api`, or you put the web container behind your own reverse proxy on a different port, four
 settings in `.env` move those without editing any config file:
@@ -182,7 +183,7 @@ NGINX_PORT=80              # port the web container listens on, inside the conta
 BACKEND=api                # name of the API service that /api is proxied to
 PORT=3000                  # port the API listens on; web proxies to the same value
 RESOLVER=127.0.0.11        # DNS nginx resolves BACKEND with — Docker's, unless you are not on Docker
-BASE_PATH=                 # subpath openGym is served under, e.g. /gym — see below; empty = site root
+BASE_PATH=                 # subpath Barbell is served under, e.g. /gym — see below; empty = site root
 SESSION_DAYS=90            # how long a sign-in lasts
 ```
 
@@ -201,9 +202,9 @@ Note the difference from `VITE_IMG_BASE` / `VITE_GIF_BASE` (see Troubleshooting)
 build-time values baked into the frontend bundle, and setting them next to `docker compose` does
 nothing to an image you pulled.
 
-### Serving openGym under a subpath
+### Serving Barbell under a subpath
 
-openGym can live at `https://example.com/gym/` rather than on a host of its own. Which of the two
+Barbell can live at `https://example.com/gym/` rather than on a host of its own. Which of the two
 setups below you need depends on one thing: whether your reverse proxy strips the prefix before
 the container sees the request.
 
@@ -227,7 +228,7 @@ BASE_PATH=/gym
 ```
 
 That is a start-up setting like the others above, so it works on a prebuilt image. Forward only
-the prefix to the container — openGym does not serve itself at the site root as well, and a copy
+the prefix to the container — Barbell does not serve itself at the site root as well, and a copy
 reached there would look for an API that is not on that path.
 
 Either way, keep `ORIGIN` and `RP_ID` pointing at the address in the browser's bar
@@ -261,7 +262,7 @@ in this archive — and unreadable without the secret next to them, like everyth
 
 ## 7. Notifications
 
-openGym can push two kinds of alert to your phone/desktop, even when the app isn't open:
+Barbell can push two kinds of alert to your phone/desktop, even when the app isn't open:
 rest-timer-over, and a reminder on days you have a workout planned but haven't logged one yet.
 Turn it on per-profile in **Settings → Notifications** (requires a signed-in passkey profile and
 HTTPS — see section 3).
@@ -284,7 +285,7 @@ instance the switch shows as unsupported. Nothing to configure server-side eithe
 refuses the lock while the phone is in Low Power Mode.
 
 Push services like a contact address for whoever runs the server, in case they ever need to reach
-you about your pushes. openGym sends your `ORIGIN` by default; set `VAPID_SUBJECT=mailto:you@example.com`
+you about your pushes. Barbell sends your `ORIGIN` by default; set `VAPID_SUBJECT=mailto:you@example.com`
 in `.env` if you would rather they had an inbox.
 
 ## 8. Updating

@@ -1,7 +1,10 @@
 # Selfhosting with HTTPS
 
-This is a rather complex topic of its own, so it lives apart from the [SELF_HOSTING.md](./SELF_HOSTING.md) which focuses on how to run openGym.
-This document takes a more general approach on how to achieve "https at home", it is not necessarily focused on openGym and applies to self hosting in general.
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
+This is a rather complex topic of its own, so it lives apart from the [SELF_HOSTING.md](./SELF_HOSTING.md) which focuses on how to run Barbell.
+This document takes a more general approach on how to achieve "https at home", it is not necessarily focused on Barbell and applies to self hosting in general.
 
 When self-hosting it is often assumed that one needs to expose their services to the internet, this is not necessarily the case.  
 We can have https certificates without having to expose our precious hosts to the world. You can still do that if you want to access your applications from the internet without any VPN, but it's not necessary to take the risk.
@@ -59,8 +62,8 @@ We configure the proxy to forward requests to our individual services like so:
 ```mermaid
 graph TD
     A[proxy]
-    A <-->B[openGym :8080]
-    A <-->C[openGym-api :3000]
+    A <-->B[Barbell :8080]
+    A <-->C[Barbell API :3000]
     A <-->D[Nextcloud :8081]
 ```
 Now we have a nice URL and can forget about the ports. The proxy reads the URL request and forwards it to the target service/host.
@@ -138,8 +141,8 @@ Additional info:
     }
     ```
 
-And that's about it. Now you should be able to access your opengym instance from your local network via https with working passkeys.  
-Be sure to update the openGym config accordingly (`RP_ID=opengym.myhomelab.dedyn.io`, `ORIGIN=https://opengym.myhomelab.dedyn.io` — see [SELF_HOSTING.md](./SELF_HOSTING.md#2-understand-the-passkey-requirement-important)).
+And that's about it. Now you should be able to access your Barbell instance from your local network via https with working passkeys.
+Be sure to update the Barbell config accordingly (`RP_ID=opengym.myhomelab.dedyn.io`, `ORIGIN=https://opengym.myhomelab.dedyn.io` — see [SELF_HOSTING.md](./SELF_HOSTING.md#2-understand-the-passkey-requirement-important)).
 
 **If the name does not resolve on your phone:** many home routers (Fritz!Box, some ISP boxes) have *DNS rebind protection* and silently drop public names that resolve to a private IP. Add `myhomelab.dedyn.io` to the router's rebind exception list, or run your own resolver.
 

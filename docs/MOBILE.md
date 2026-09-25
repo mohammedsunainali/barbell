@@ -1,6 +1,9 @@
 # Building the mobile app (iOS / Android)
 
-openGym ships in two flavors from the same codebase:
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
+Barbell uses two modes from the same codebase:
 
 | | **Self-hosted** (this repo's default) | **Mobile app** (`VITE_MOBILE=1`) |
 |---|---|---|
@@ -19,7 +22,7 @@ through the OS share sheet instead of a browser download.
 ### Connecting the app to your own server
 
 On first launch the app asks how you want to use it. Alongside the fully local mode above,
-you can instead **connect it to a self-hosted openGym server** — your data then lives there,
+you can instead **connect it to a self-hosted Barbell server** — your data then lives there,
 synced the same way the browser PWA does, instead of only on the phone. This is a mode of the
 same app, not a different build or download.
 
@@ -46,7 +49,7 @@ or Settings → **"Connect to my server"** later) to finish. Notes:
 - **Android:** Android Studio (bundles the SDK). Java 21 for Gradle.
 - **iOS:** a Mac with Xcode 15+ and CocoaPods (`brew install cocoapods`). A free Apple ID
   is enough to run the app on your own iPhone (see below); paid membership is only needed
-  for App Store distribution, which openGym doesn't do.
+  for App Store distribution, which is not configured for this Barbell branch.
 
 ## Build & run
 
@@ -67,25 +70,26 @@ into both native projects — re-run it after every web-code change before build
 
 ## App icons & splash screens
 
-`frontend/resources/icon.svg` is the 1024×1024 source (the app's dumbbell glyph on the
-app background). Generate all platform assets from it on a machine with the tooling:
+`frontend/resources/icon.svg` contains the official text-free Barbell mark. The iOS and
+Android projects already contain the supplied icon and splash exports. When regenerating
+platform assets for a new release, use only that source and review the native output:
 
 ```sh
 cd frontend
-npx @capacitor/assets generate --iconBackgroundColor '#0c0e12' --splashBackgroundColor '#0c0e12'
+npx @capacitor/assets generate --iconBackgroundColor '#000000' --splashBackgroundColor '#000000'
 ```
 
-(If the generator won't take the SVG directly, export it to `resources/icon.png` at
-1024×1024 first — any image tool can do it.)
+(If the generator requires a PNG, use the supplied 1024 px icon-only PNG in
+`assets/barbell/`; do not draw a new icon.)
 
-## Distribution — deliberately no app stores
+## Upstream distribution history (not Barbell releases)
 
-openGym's mobile app is not on the Play Store or App Store, and that's a choice: no store
-accounts, no store rules, no yearly fees between you and an open-source app.
+The following download and CI instructions describe upstream openGym releases. They do not
+publish a Barbell app or establish Barbell store availability.
 
-### Android — sideload the APK
+### Android — upstream APK reference
 
-The official signed APK is in four places, all the same file:
+Upstream documents a signed APK in four places, all the same file:
 
 - **[opengym.duarte-santos.ch](https://opengym.duarte-santos.ch)** — the download page.
 - **[GitLab's package registry](https://gitlab.com/DuarteSantos8/opengym/-/packages)** — every
@@ -96,13 +100,13 @@ The official signed APK is in four places, all the same file:
 - **[The GitLab release](https://gitlab.com/DuarteSantos8/opengym/-/releases)** on the mirror,
   where the file is built; it links to the package registry above.
 
-Android asks you to allow installs from the browser the first time — that's standard for any
-app outside the Play Store. Check the `.sha256` if you got the file from anywhere else.
+These packages are upstream openGym binaries. They are not Barbell builds; do not install
+them as a way to validate this rebrand.
 
-Both come out of CI: the `build:apk` job in [`.gitlab-ci.yml`](../.gitlab-ci.yml) runs
+In the upstream project, these came out of CI: the `build:apk` job in
+[the upstream CI configuration](../.gitlab-ci.yml) runs
 `npm run build:mobile` and `./gradlew assembleRelease`, then `zipalign`s and signs the result
-with the release key. The job runs on every push to `main` too, so the newest unreleased
-build is always one click away (signed with the same key, installs over a release):
+with the upstream release key. Its job also runs on pushes to the upstream `main`:
 `https://gitlab.com/DuarteSantos8/opengym/-/jobs/artifacts/main/browse?job=build:apk`
 — a 30-day job artifact, not a package, and not what the in-app updater offers. The key lives in *protected* CI variables (`ANDROID_KEYSTORE_B64`,
 `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`), so it only exists on `main` and on `v*`
@@ -118,11 +122,11 @@ cd android && ./gradlew assembleRelease            # → app/build/outputs/apk/r
 
 # one-time: create a keystore. KEEP IT — updates must be signed with the same key,
 # or Android refuses to install the new version over the old one.
-keytool -genkeypair -keystore my.keystore -alias opengym -keyalg RSA -validity 10950
+keytool -genkeypair -keystore my.keystore -alias barbell -keyalg RSA -validity 10950
 
 # align + sign (zipalign/apksigner ship with the Android SDK build-tools)
 zipalign -f -p 4 app-release-unsigned.apk aligned.apk
-apksigner sign --ks my.keystore --ks-key-alias opengym --out openGym.apk aligned.apk
+apksigner sign --ks my.keystore --ks-key-alias barbell --out Barbell.apk aligned.apk
 ```
 
 ### iPhone — what's actually possible
@@ -136,7 +140,7 @@ that would simply install. Your free options:
   onto your own iPhone. Apple expires the signature after 7 days; re-run from Xcode to renew.
 - **AltStore:** automates that 7-day re-signing over Wi-Fi via a Mac companion app.
 
-There is a `build:ios` job in [`.gitlab-ci.yml`](../.gitlab-ci.yml) for exactly that path: the
+Upstream has a `build:ios` job in [`.gitlab-ci.yml`](../.gitlab-ci.yml) for exactly that path: the
 same mobile bundle, `xcodebuild archive` without a signing identity, and an *unsigned* `.ipa`
 (plus `.sha256`) as job artifact — on a tag also under `opengym-ios/<version>/` in the package
 registry — for AltStore/Sideloadly users to sign with their own Apple ID. It needs a Mac: Xcode
@@ -155,9 +159,9 @@ membership, the distribution certificate and profile as protected file variables
   step with `frontend/package.json`. `versionCode` must strictly increase or updates won't
   install over an existing APK. The APK is *named* from `frontend/package.json` (the CI job
   reads `version` out of it), so the two drifting apart shows up as a misnamed file.
-- Tagging `vX.Y.Z` is what ships everything: images, APK, release notes. Don't push a version
+- Upstream tagging `vX.Y.Z` is what ships everything: images, APK, release notes. Don't push a version
   tag you don't mean to release — `v*` tags are protected for that reason.
-- **License:** openGym is AGPL-3.0, which by itself sits badly with app-store terms of
+- **License:** the inherited openGym code is AGPL-3.0, which by itself sits badly with app-store terms of
   service. `NOTICE.md` carries an app-store exception (an additional permission under
   AGPL §7) granted by the copyright holder — relevant only if store distribution ever happens.
 - The app requests notification permission only when the workout-day reminder is switched

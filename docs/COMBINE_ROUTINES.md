@@ -1,5 +1,8 @@
 # Combine routines — do more than one routine in a session
 
+
+> **Barbell source note:** This guide describes inherited openGym behavior and may include upstream release URLs or compatibility identifiers. For Barbell self-hosting, build this repository from source using [Quick Start — Self-Host Barbell](../README.md#quick-start--self-host-barbell). Existing upstream APKs and images are not Barbell releases. Preserve the [media notice](../NOTICE.md).
+
 Implementable spec for **combining routines**: running more than one routine in a single
 workout. Two ways in — an ad-hoc "add a routine" from the workout header, and a weekly-planner
 day that holds several routines — plus a shared merge helper and every existing reader that
