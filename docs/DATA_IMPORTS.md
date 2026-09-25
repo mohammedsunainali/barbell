@@ -46,7 +46,7 @@ These apps have been tested to work without adjustments to the column names:
 If you have **Hevy Pro**, you can skip the CSV and import straight from Hevy:
 
 1. Open [Hevy → Settings → Developer](https://hevy.com/settings?developer) and create an API key
-2. In openGym: **Settings → Import from Hevy**
+2. In Barbell: **Settings → Import from Hevy**
 3. Paste the key (used only for that import — it is not saved)
 4. Choose whether to bring **workouts**, **routines**, **weigh-ins**, or any mix, then confirm
 

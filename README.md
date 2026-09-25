@@ -2,7 +2,7 @@
 
 ![BARBELL horizontal lockup](assets/barbell-horizontal-lockup.svg)
 
-**YOUR WORKOUT TRACKER** · AI COACH & GYM TRACKER
+**YOUR WORKOUT TRACKER** · **AI COACH & GYM TRACKER**
 
 Barbell is an open-source workout tracker built on the [openGym project](https://github.com/DuarteSantos8/openGym). Plan your training, follow guided workouts, log sets and bodyweight, see your progress, and optionally use an AI Coach. Run the web app on your own server or use the existing Capacitor mobile code in local mode. This repository retains the upstream Git history and [GNU AGPL v3](LICENSE) license.
 
@@ -18,7 +18,6 @@ The Barbell rebrand is source work in progress. The upstream public site, APK an
 - **OWN YOUR DATA** — use local mobile storage or self-host with passkeys, sync, imports and exports.
 
 ## Features
-
 
 - ⚖️ **Body-weight tracking** — interactive chart with a goal line you set, gains/losses colored by whether they move toward it
 - 🏋️ **Weekly plan** — a routine per weekday, over a library of **1,324 exercises** (searchable, with animated demos), browsable **by muscle** on a body map
@@ -64,6 +63,13 @@ The Barbell rebrand is source work in progress. The upstream public site, APK an
 - 🧠 **An AI coach that writes your plan** (optional, off by default) — answer a handful of questions and it designs a week of routines; later it reads what you actually logged and proposes changes, each one with the evidence behind it. You approve every change and can undo it. It runs on **your** server under **your** provider account — Anthropic, OpenAI, Gemini or any OpenAI-compatible endpoint (Ollama on your LAN counts) with a pasted API key on the default image, or the Claude Agent SDK / Codex CLI on a separate build. The phone app can use your instance or its own key. See [docs/AI_COACH.md](docs/AI_COACH.md)
 - 📱 **Standalone Android source** — the Capacitor project supports local mode, native workout reminders, and the inherited update check. The existing upstream APK is an upstream release, not a Barbell build.
 
+## AI Coach
+
+The optional Coach can propose a training plan and revisions based on logged workouts. It is off until configured with a supported provider or a paired self-hosted server. Review proposals before applying them; the Coach does not silently replace your plan. See [the Coach guide](docs/AI_COACH.md) for providers, setup, and data sent to them.
+
+## Your Data / Privacy
+
+Local mobile mode stores workout data on the device. A self-hosted instance stores profiles, plans, workouts, settings, and bodyweight in JSON files under `./data`; back up that directory yourself. Passkeys authenticate server profiles, and pairing can sync a mobile device to your server. Backups and imports preserve portability. A configured AI provider receives the training context needed for Coach requests; review its setup before opting in. See [self-hosting](docs/SELF_HOSTING.md), [mobile](docs/MOBILE.md), and [the security model](SECURITY.md).
 
 ## Quick Start — Self-Host Barbell
 
@@ -88,10 +94,22 @@ Open `http://localhost:8080` and create a profile. The `media` service downloads
 
 For local frontend development run `cd frontend && npm ci && npm run dev`. Tests: `cd frontend && npm test`; `cd api && npm ci && npm test`; `cd mcp && npm ci && npm test`. See [CONTRIBUTING.md](CONTRIBUTING.md), [migration audit](docs/BARBELL_MIGRATION.md), and [ROADMAP.md](ROADMAP.md).
 
-## Mobile and releases
+## Mobile
 
 The Android and iOS Capacitor projects exist in `frontend/`. Android local mode and pairing with a self-hosted instance are supported in source. There is no verified Barbell-signed APK or App Store listing yet. The native bundle/application IDs are intentionally retained for compatibility while distribution and signing are reviewed. [Mobile build instructions](docs/MOBILE.md) predate this rebrand and may contain upstream distribution links.
 
-## License and attribution
+## Open Source
 
-The inherited openGym code and modifications remain under the [GNU AGPL v3](LICENSE), subject to the original [NOTICE.md](NOTICE.md), including its additional app-store permission. Upstream source and history: [DuarteSantos8/openGym](https://github.com/DuarteSantos8/openGym). Third-party exercise media are separately licensed and are not Barbell-owned. The supplied Barbell identity assets are distinguished from inherited application code in [the brand asset notice](assets/BARBELL_ASSETS.md).
+Barbell is developed from [DuarteSantos8/openGym](https://github.com/DuarteSantos8/openGym), with its commit history and existing project architecture retained. The [Barbell repository](https://github.com/mohammedsunainali/barbell) contains the modified source; no Barbell production website, signed APK, or store release is claimed here.
+
+## Contributing
+
+Open Barbell issues and pull requests in [this repository](https://github.com/mohammedsunainali/barbell). Run the relevant frontend, API, and MCP tests; follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and compatibility rules.
+
+## License
+
+The inherited openGym code and modifications remain under the [GNU AGPL v3](LICENSE), subject to the original [NOTICE.md](NOTICE.md), including its additional app-store permission. Moving the repository does not change that license. The supplied Barbell identity assets are distinguished from inherited code in [the brand asset notice](assets/BARBELL_ASSETS.md).
+
+## Third-party notices
+
+Exercise images and animations are third-party media, not Barbell-owned and not covered by the application's AGPL. The runtime obtains them from the upstream dataset; do not redistribute or use them in Barbell marketing without checking rights. Read [NOTICE.md](NOTICE.md) for attribution, provenance, and the applicable caveats.

@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-Sitemap: https://opengym.duarte-santos.ch/sitemap.xml
+# No Barbell production domain has been published. Add a Barbell sitemap when it exists.

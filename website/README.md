@@ -1,7 +1,5 @@
-# Barbell website
+# Barbell website source
 
-`index.html` uses the supplied BARBELL Design System V1 landing-page hierarchy, local Poppins fonts and official outlined logo assets. The three images in `screens/` are screenshots inherited from the actual openGym application; they are marked as the current product UI and are not Barbell release images.
+`index.html`, `docs.html`, `api.html`, and `about.html` are Barbell-facing static pages. They use the supplied BARBELL Design System V1 hierarchy, official vector identity, electric yellow and locally bundled Poppins. The three screenshots under `screens/` are inherited app captures without third-party exercise artwork, labeled as the pre-migration product UI. Workout and library captures containing separately licensed exercise media are excluded.
 
-`docs.html`, `api.html` and `about.html` preserve the inherited upstream reference text and links under an explicit provenance notice. They need a dedicated content and release audit before being presented as Barbell release documentation. The historical site build flow and `build-images.sh` have not been repointed to a Barbell production domain.
-
-The workout and exercise-library captures were deliberately excluded because they display third-party exercise artwork. Do not bundle those captures in marketing without verifying rights.
+The original upstream site pages, generator and sitemap are preserved under `docs/upstream-website/` for historical reference, not deployment. Detailed engineering documentation lives in `docs/`, the HTTP contract in `api/openapi.yaml`, and legal/media terms in `LICENSE` and `NOTICE.md`. No Barbell production domain or distribution artifacts exist; `robots.txt` disallows indexing until a real Barbell URL and sitemap are configured.
