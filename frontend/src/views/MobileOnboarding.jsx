@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from 'react'
 import { useStore } from '../store/useStore.js'
 import { useUI } from '../store/useUI.js'
 import { t } from '../lib/i18n.js'
-import Icon from '../components/Icon.jsx'
 import { Button } from '../components/ui.jsx'
 import { askAddDeviceData } from '../sheets.jsx'
 
@@ -28,10 +27,10 @@ export function ConnectSheet({ close }) {
     <div className="muted small" style={{ marginBottom: 14 }}>
       {t('Open Settings → “Pair the mobile app” on the Barbell site you’re already signed into, then enter its address and the code shown there.')}
     </div>
-    <input ref={ref} className="input" placeholder={t('Server address (e.g. gym.example.com)')} value={url}
+    <input ref={ref} className="input" aria-label={t('Server address')} placeholder={t('Server address (e.g. gym.example.com)')} value={url}
       onChange={e => setUrl(e.target.value)} autoCapitalize="none" autoCorrect="off" inputMode="url" />
     <div style={{ height: 10 }} />
-    <input className="input" placeholder={t('Pairing code')} maxLength={8} value={code}
+    <input className="input" aria-label={t('Pairing code')} autoCapitalize="characters" autoCorrect="off" spellCheck={false} placeholder={t('Pairing code')} maxLength={8} value={code}
       onChange={e => setCode(e.target.value.toUpperCase())} style={{ letterSpacing: '.14em', fontWeight: 600, textAlign: 'center' }} />
     <div style={{ height: 12 }} />
     <Button variant="primary" onClick={go} disabled={busy}>{busy ? t('Connecting…') : t('Connect')}</Button>
@@ -40,10 +39,9 @@ export function ConnectSheet({ close }) {
 
 export default function MobileOnboarding() {
   const { chooseLocalMode } = useStore()
-  const head = <>
-    <img src="/brand/barbell-icon-only.svg" alt="" width="96" height="96" style={{ margin: "0 auto", display: "block" }} />
-    <h1 style={{ fontSize: 34, fontWeight: 700, letterSpacing: '-.028em', margin: '10px 0 4px' }}>BARBELL</h1>
-  </>
+  const head = <h1 style={{ margin: '10px 0 20px' }}>
+    <img src="/brand/barbell-horizontal-lockup.svg" alt="BARBELL" width="280" style={{ maxWidth: '100%', height: 'auto' }} />
+  </h1>
   const wrap = { display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '78vh', textAlign: 'center' }
   return (
     <div className="narrow" style={wrap}>

@@ -149,6 +149,9 @@ export const useStore = create((set, get) => {
     set({ S })
     if (MOBILE) nativePersist()
     if (push && get().user) {
+      // Persist the obligation before the debounce: iOS may terminate us before PUT runs.
+      localStorage.setItem('gym_dirty', '1')
+      setSync({ pending: true })
       // Before boot has pulled, the copy in hand may be older than the server's: a push now
       // would carry it with a stale (or no) baseRev. It waits for finishBoot.
       if (!get().ready) { pushPending = true; return }
@@ -227,11 +230,12 @@ export const useStore = create((set, get) => {
       // next push to, and the marker must not pretend otherwise.
       if (r.rev == null) localStorage.removeItem(SYNC_KEY)
       else writeSync(r.rev, S._ts)
-      localStorage.removeItem('gym_dirty')
+      const stillPending = get().S !== S
+      if (!stillPending) localStorage.removeItem('gym_dirty')
       toldTooLarge = false
       // Back from offline with changes that were waiting: say so once — the banner that promised
       // "syncs when you're back online" has just kept its word.
-      setSync({ offline: false, pending: false, lastSynced: Date.now() })
+      setSync({ offline: false, pending: stillPending, lastSynced: Date.now() })
       if (offlineChanges) {
         offlineChanges = false
         import('./useUI.js').then(({ useUI }) => useUI.getState().toast(t('Back online — synced with the server.'))).catch(() => {})
@@ -545,6 +549,20 @@ export const useStore = create((set, get) => {
       if (MOBILE) {
         const remote = await loadRemote()
         set({ coachLocal: coachDeviceSettings(await loadCoachDevice()) })
+        const saved = await nativeLoad()
+        const S = get().S
+        if (saved && (saved._ts || 0) >= (S._ts || 0)) {
+          persist(Object.assign(clone(DEF), saved), false, false)
+        } else if (hasData(S)) {
+          nativeSave(S)   // first run after an update from a file-less version: seed the mirror
+        }
+        // A paired phone also needs its mirror before either a pull or an offline boot.
+        // If WebView metadata was evicted, conservatively merge the recovered copy on
+        // reconnect instead of allowing a server pull to discard unsent training.
+        if (remote?.mode === 'remote' && saved && !readSync()) {
+          localStorage.setItem('gym_dirty', '1')
+          setSync({ pending: true })
+        }
         if (remote?.mode === 'remote') {
           setRemoteAuth(remote.base, remote.token)
           try {
@@ -556,19 +574,12 @@ export const useStore = create((set, get) => {
             await get().loadConfig()
             await get().pullState()
           } catch (e) {
-            if (e.status === 401) { await forgetRemote(); get().setGuest(true) }
+            if (e.status === 401) { await forgetRemote(); get().setUser(null); get().setGuest(true) }
             else { get().setUser(remote.user); setSync({ offline: true }) }   // offline — keep going from the last-synced local copy
           }
           syncReminder(get().S)
           finishBoot()
           return
-        }
-        const saved = await nativeLoad()
-        const S = get().S
-        if (saved && (!hasData(S) || (saved._ts || 0) >= (S._ts || 0))) {
-          persist(Object.assign(clone(DEF), saved), false, false)
-        } else if (hasData(S)) {
-          nativeSave(S)   // first run after an update from a file-less version: seed the mirror
         }
         get().setGuest(true)
         syncReminder(get().S)

@@ -54,7 +54,7 @@
   --acc-line: color-mix(in srgb, var(--acc) 38%, transparent);
 
   /* geometry */
-  --r-sm:8px; --r:12px; --r-lg:16px; --r-xl:22px; --r-card:14px;
+  --r-sm:8px; --r:12px; --r-lg:16px; --r-xl:16px; --r-card:12px;
   --pad:16px;
   --icon-stroke:1.7;
 

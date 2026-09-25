@@ -20,7 +20,7 @@ describe('normalizeServerUrl', () => {
   })
 
   it('rejects empty or unusable input', () => {
-    for (const v of ['', '   ', null, undefined, 'not a url at all!!']) {
+    for (const v of ['', '   ', null, undefined, 'not a url at all!!', 'ftp://gym.example', 'file://gym.example', 'https://user:secret@gym.example']) {
       expect(normalizeServerUrl(v)).toBe(null)
     }
   })

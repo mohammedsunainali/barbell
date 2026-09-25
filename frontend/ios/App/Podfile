@@ -26,4 +26,14 @@ end
 
 post_install do |installer|
   assertDeploymentTarget(installer)
+  # Capacitor 7's helper only raises Pods to iOS 14. Xcode 27 rejects that
+  # target; match the app's existing minimum without lowering newer Pods.
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      current = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f
+      if current > 0 && current < 15.5
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.5'
+      end
+    end
+  end
 end

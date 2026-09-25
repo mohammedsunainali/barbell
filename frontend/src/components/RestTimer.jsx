@@ -25,7 +25,7 @@ export default function RestTimer() {
 
   if (work) return (
     <div id="timer" className="working">
-      <div className="t">{clock(work.left)}</div>
+      <div className="t" role="timer" aria-label={t('Time remaining')}>{clock(work.left)}</div>
       <div className="grow">
         {work.label && <div className="lbl">{work.label}</div>}
         <div className="bar"><i style={{ width: pct + '%' }} /></div>
@@ -41,12 +41,12 @@ export default function RestTimer() {
   return (
     <div id="timer" className="rest">
       <div className="head">
-        <div className="t">{clock(timer.left)}</div>
+        <div className="t" role="timer" aria-label={t('Rest remaining')}>{clock(timer.left)}</div>
         <div className="bar"><i style={{ width: pct + '%' }} /></div>
       </div>
       <div className="acts">
-        <Button size="sm" icon="minus" onClick={() => addRest(-15)}>15s</Button>
-        <Button size="sm" icon="plus" onClick={() => addRest(15)}>15s</Button>
+        <Button size="sm" icon="minus" aria-label={t('Shorten rest by 15 seconds')} onClick={() => addRest(-15)}>15s</Button>
+        <Button size="sm" icon="plus" aria-label={t('Extend rest by 15 seconds')} onClick={() => addRest(15)}>15s</Button>
         <Button size="sm" variant="primary" className="skip" onClick={stopRest}>{t('Skip')}</Button>
       </div>
     </div>

@@ -32,8 +32,16 @@ that's already signed in: Settings → **"Pair the mobile app"** shows a one-tim
 5 minutes); enter your server's address and that code in the app (same first-launch screen,
 or Settings → **"Connect to my server"** later) to finish. Notes:
 
-- Requires network access every time the app is used — there's no offline file mirror once
-  connected, same as the browser PWA.
+- Paired mode also mirrors training state into `opengym-state.json`. Previously cached
+  training and active workouts remain available offline; pairing, server Coach and remote
+  sync need connectivity. Failed writes remain pending and reconnect merges against the
+  server revision (409 conflicts are retried without silently replacing another device).
+  Boot restores the mirror before contacting the paired server. If WebView sync metadata
+  was evicted, the recovered copy is conservatively treated as pending.
+- The mirror, pairing file and device Coach configuration are app-private compatibility
+  files, not exports. Uninstalling normally removes local training and these files. Do not
+  rely on reinstall to restore data; export backups or sync before uninstalling. Keychain
+  survival does not imply workout survival.
 - Use an HTTPS address if at all possible: the connection carries a bearer token instead of
   a cookie, and that token would otherwise cross the network in plain text.
 - "Sign out everywhere" (Settings → Account, in the browser) revokes a paired app's access
@@ -131,8 +139,8 @@ apksigner sign --ks my.keystore --ks-key-alias barbell --out Barbell.apk aligned
 
 ### iPhone — what's actually possible
 
-Apple does not allow installing apps outside the App Store, so there is no `.ipa` download
-that would simply install. Your free options:
+An unsigned `.ipa` is not directly installable. Development and distribution require an
+appropriate Apple signing/provisioning path. Existing upstream options include:
 
 - **Self-host + PWA** (recommended): open your instance in Safari → Share → *Add to Home
   Screen*. Full-screen app, no expiry, plus sync and passkeys.
@@ -167,3 +175,7 @@ membership, the distribution certificate and profile as protected file variables
 - The app requests notification permission only when the workout-day reminder is switched
   on, and (on Android) declares `SCHEDULE_EXACT_ALARM` so the reminder fires to the minute
   where the user allows it.
+
+## Barbell iOS handoff
+
+See [iOS V1 implementation](IOS_V1_IMPLEMENTATION.md) and [TestFlight handoff](IOS_TESTFLIGHT_HANDOFF.md) for this branch’s actual verification and open gates.
