@@ -24,6 +24,12 @@ export const DEF = {
   unit: 'kg', restSec: 90, restPauseSec: 15, sound: true, soundOnSilent: false, timerFlash: false, keepAwake: true, lang: 'en',
   theme: 'dark', accent: 'gold', body: 'male', targetW: null,
   bodyweight: [], routines: [], week: {}, dayPlan: {},
+  // Personalisation is deliberately separate from Coach intake. Sensitive answers stay in
+  // the local/synchronised profile and are never included in Coach's payload allowlist.
+  personalization: { displayName: '', goals: [], gender: null, dob: null, heightCm: null,
+    healthConditions: [], lifestyle: null, experience: null, environment: null,
+    daysPerWeek: null, duration: null, trainingPeriod: null, trainingTime: null },
+  onboarding: { version: 2, step: 1, complete: false, legal: null, draft: null, weightAdded: false },
   exWeights: {}, workouts: [], active: null, customEx: [], gifSize: 'full',
   // How the active workout is laid out — 'cards' (one exercise at a time with Prev/Next),
   // 'list' (every exercise stacked and scrollable) or 'compact' (that stack stripped to just
@@ -500,7 +506,7 @@ export const useStore = create((set, get) => {
     // asks again.
     async chooseLocalMode() {
       await chooseLocal()
-      set({ needsMobileOnboarding: false })
+      set({ needsMobileOnboarding: !get().S.onboarding?.complete })
     },
     // Redeems the pairing code shown in the browser (Settings → "Pair the mobile app") and
     // switches this device over to that account, same as signing in on the web does.
@@ -586,7 +592,11 @@ export const useStore = create((set, get) => {
         // Only a genuinely first launch — nothing chosen yet and nothing to lose either — offers
         // the choice. Picking local (even with no data yet) persists that choice below and this
         // never asks again.
-        finishBoot({ needsMobileOnboarding: !remote && !hasData(get().S) })
+        // Existing installs retain their data and never get sent through a new first-run flow.
+        const onboarding = get().S.onboarding
+        // A persisted legal acknowledgement marks a new flow already in progress. Older local
+        // installs have neither it nor activity and must remain on their existing Home path.
+        finishBoot({ needsMobileOnboarding: !onboarding?.complete && ((!remote && !hasData(get().S)) || !!onboarding?.legal) })
         return
       }
       // Demo build (GitHub Pages): no backend at all — seed once, stay in guest mode.

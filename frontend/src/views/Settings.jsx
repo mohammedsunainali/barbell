@@ -15,7 +15,7 @@ import { DEMO, REPO } from '../lib/demo.js'
 import { MOBILE, isAndroid, shareExport, syncReminder } from '../lib/mobile.js'
 import { checkForUpdate, downloadAndInstall } from '../lib/update.js'
 import { forgetCoach } from '../lib/coach-api.js'
-import { ConnectSheet } from './MobileOnboarding.jsx'
+import { ConnectSheet, TermsReader, PrivacyReader } from './MobileOnboarding.jsx'
 import { starterPlanSheet, confirmSheet, importFromApp, importFromHevy, equipmentProfileSheet, menuSheet, askAddDeviceData } from '../sheets.jsx'
 import Icon from '../components/Icon.jsx'
 import { Section, Row, SelectRow, Switch, Segmented, Button, TextField } from '../components/ui.jsx'
@@ -435,6 +435,7 @@ export default function Settings() {
       Barbell v{__APP_VERSION__} · {t('free & open source (AGPL v3)')}<br />
       <a href="https://github.com/mohammedsunainali/barbell" target="_blank" rel="noopener">Barbell source</a> · exercise data: hasaneyldrm/exercises-dataset (MIT)<br />
       exercise images and animations © <a href="https://gymvisual.com/" target="_blank" rel="noopener">Gym visual</a>
+      <br /><button className="linkbtn" onClick={() => useUI.getState().openSheet(close => <TermsReader close={close} />)}>Terms of Service</button> · <button className="linkbtn" onClick={() => useUI.getState().openSheet(close => <PrivacyReader close={close} />)}>Privacy Policy</button>
     </div>
   </div>
 }
