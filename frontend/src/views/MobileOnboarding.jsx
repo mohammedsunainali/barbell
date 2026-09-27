@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useStore } from '../store/useStore.js'
 import { useUI } from '../store/useUI.js'
 import { Button } from '../components/ui.jsx'
-import { buildStarterPlan } from '../lib/starter.js'
-import { todayISO } from '../lib/format.js'
 import { askAddDeviceData } from '../sheets.jsx'
+import Icon from '../components/Icon.jsx'
 
 export function ConnectSheet({ close }) {
   const { connectToServer } = useStore(); const [url,setUrl]=useState(''); const [code,setCode]=useState(''); const [busy,setBusy]=useState(false)
@@ -14,24 +13,84 @@ export function ConnectSheet({ close }) {
 
 const TERMS=`BARBELL Terms of Service\n\nEffective date: 27 September 2026\nDraft version: 1.0\n\n1. Introduction\nThese Terms of Service govern your use of BARBELL, a fitness and workout-tracking application provided by Focus Technologies. BARBELL helps users plan workouts, follow training programs, log exercise activity, track progress and bodyweight, manage training preferences and, where configured, use optional AI-assisted training features.\n\n2. Scope and Definitions\n“BARBELL,” “App,” “Service,” or “Services” means the BARBELL mobile application, compatible web functionality, and related features provided by Focus Technologies. “We,” “us,” or “our” means Focus Technologies. “You” means the person using BARBELL. A self-hosted server is a BARBELL-compatible server selected and operated by you or another server operator.\n\n3. Acceptance of These Terms\nTapping Get Started indicates that you agree to these Terms and acknowledge the Privacy Policy, subject to applicable law. Opening, scrolling through, or pressing I Understand on an informational legal page is not a separate acceptance action.\n\n4. Fitness and Training Purpose\nBARBELL is a fitness and training tool. No workout, suggested weight, exercise, schedule or progression strategy is guaranteed to be appropriate for every person.\n\n5. Medical and Emergency Disclaimer\nBARBELL is not a medical application or medical service. It does not diagnose, treat, cure or prevent medical conditions and does not replace a qualified professional. BARBELL is not an emergency service.\n\n6. Your Training Responsibilities\nYou remain responsible for deciding whether an exercise, load, intensity, duration, movement or plan is appropriate for you. Stop or modify activity if you experience concerning symptoms, unusual pain or signs of injury.\n\n7. Profiles, Accounts and Modes of Use\nMobile local mode may operate without a traditional cloud account. Self-hosted installations may use profiles, passkeys, sessions and mobile-device pairing.\n\n8. Personalized Workout Plans and AI Coach\nPersonalization is an aid, not a promise that a program is optimal. AI Coach is optional where configured. AI output can be incomplete, incorrect or inappropriate and must be reviewed before following it. AI Coach is not a medical professional.\n\n9. Your Data and Content\nYou retain rights in information you enter. You authorize processing reasonably necessary to provide functions you choose, including storage, synchronization, workout tracking, personalization, calculations, imports, exports and optional AI features.\n\n10. Gym Check-In, Availability and Third Parties\nUse gym check-in only for credentials you are authorized to use. BARBELL is under active development. Features can differ between local, self-hosted and AI configurations. Third-party services and providers are independent.\n\n11. Disclaimers, Changes and Contact\nTo the maximum extent permitted by law, BARBELL is provided “as is” and “as available.” Nothing excludes rights that cannot lawfully be excluded. Focus Technologies may update these Terms when functionality, business practices or applicable requirements change. Questions may be sent to hi@focuslife.space. Do not send passwords, passkeys, API keys, pairing tokens or unnecessary sensitive health information.`
 const PRIVACY=`BARBELL Privacy Policy\n\nEffective date: 27 September 2026\nDraft version: 1.0\n\n1. Introduction\nThis Privacy Policy explains how Focus Technologies handles information in connection with BARBELL. BARBELL can operate using local device storage and optional synchronization with a server chosen by the user.\n\n2. Information and Processing\nInformation you may provide includes profile information, onboarding responses, training preferences, routines, exercise logs, bodyweight, notes, goals, settings and imported data. In local mode information may remain primarily on your device. In paired/server mode relevant information may synchronize to the server you choose.\n\n3. Onboarding and Sensitive Information\nOnboarding may request name, goals, gender, date of birth, height, weight, health-condition selections, lifestyle selection, experience, environment, frequency, duration and training time. Health-condition and lifestyle information can be sensitive and does not mean BARBELL has medically evaluated or cleared you to exercise.\n\n4. AI Coach\nAI Coach is optional. When you deliberately use it, BARBELL may provide appropriate training context to the configured AI system. The current architecture uses an allowlist rather than transmitting every stored field. Display name, gender, date of birth, health-condition selections and smoking/alcohol information are not automatically added to an AI-provider payload.\n\n5. Permissions, Notifications and Exports\nCamera permission is requested when scanning is used. Notification permission is separate from entering a preferred training time. If you export data, the destination you select controls its own copy.\n\n6. Retention, Security and Self-hosting\nLocal data remains until modified, deleted or removed through the application/device lifecycle. Server data is subject to the selected server’s configuration, operator and backups. No technology can guarantee absolute security. Self-hosted operators control hosting, backups, administrators, TLS and retention.\n\n7. Analytics and Contact\nThe current product source does not identify a general BARBELL-operated analytics, advertising or telemetry system. Focus Technologies does not state that it sells personal data. Questions may be sent to hi@focuslife.space. Do not send passwords, API keys, passkeys, pairing tokens or unnecessary sensitive information by email.`
-function Legal({title,text,close}){return <div className="legal-reader"><button className="iconbtn" onClick={close} aria-label="Close">×</button><h1>{title}</h1><pre>{text}</pre><Button variant="primary" onClick={close}>I Understand</Button></div>}
+function Legal({title,text,close}){return <div className="legal-reader"><h1>{title}</h1><pre>{text}</pre><Button variant="primary" onClick={close}>I Understand</Button></div>}
 export function TermsReader({ close }) { return <Legal title="BARBELL Terms of Service" text={TERMS} close={close} /> }
 export function PrivacyReader({ close }) { return <Legal title="BARBELL Privacy Policy" text={PRIVACY} close={close} /> }
-const goals=['Strength & Conditioning','Bodybuilding','Fat Loss','Muscle Gain','Stamina & Mobility','General Fitness']; const health=['Knee / Joint Issues','Back Issues','Diabetes','PCOS / PCOD','Thyroid Issues','High Blood Pressure','High Cholesterol','Asthma','Injury Recovery','Other']
-const options={6:['Male','Female','Prefer not to say'],11:['I smoke','I drink','Both','Neither','Prefer not to say'],12:['New to training','Getting back into training','Regular gym-goer','Experienced lifter','Athlete'],13:['Gym','Home','Both','Outdoor'],14:['2 days per week','3 days per week','4 days per week','5 days per week','6 days per week','Every day'],15:['20–30 min','30–45 min','45–60 min','60–90 min','90+ min'],16:['Morning','Afternoon','Evening','Late night']}; const stepMeta={6:['What’s your gender?','gender'],11:['Do you smoke or drink?','lifestyle'],12:['How do you train today?','experience'],13:['Where do you train?','environment'],14:['How often do you want to train?','daysPerWeek'],15:['How long do you usually have?','duration'],16:['When do you usually train?','trainingPeriod']}; const dcount=v=>v==='Every day'?7:Number(String(v||'').charAt(0))||0
-export default function MobileOnboarding(){const {S,update,chooseLocalMode}=useStore();const p=S.personalization||{};const o=S.onboarding||{};const [step,setStep]=useState(o.step||1);const save=x=>update(s=>{s.personalization={...s.personalization,...x};s.onboarding={...s.onboarding,step}});const go=n=>{n=Math.max(1,Math.min(20,n));update(s=>{s.onboarding={...s.onboarding,step:n}});setStep(n)};const open=(title,text)=>useUI.getState().openSheet(close=><Legal title={title} text={text} close={close}/>);const header=(h,sub)=><><div className="onboard-progress"><button onClick={()=>go(step-1)} disabled={step<=2} aria-label="Back">‹</button><i style={{width:`${step/21*100}%`}}/><span>{step}/21</span></div><h1>{h}</h1>{sub&&<p>{sub}</p>}</>;
-const draft=()=>{if(o.draft)return;const plan=buildStarterPlan(dcount(p.daysPerWeek)>=4?'upper-lower':'full-body');update(s=>{s.onboarding={...s.onboarding,draft:{...plan,createdAt:Date.now()}}})};const commit=()=>{const d=useStore.getState().S.onboarding?.draft;if(!d)return;update(s=>{if(s.onboarding.draft.committed)return;s.routines=[...s.routines,...d.routines];const w={...s.week};d.schedule.forEach(x=>w[x.day]=[...(w[x.day]||[]),x.routineId]);s.week=w;if(p.weight!=null&&!s.onboarding.weightAdded&&!s.bodyweight.some(x=>x.d===todayISO()))s.bodyweight.push({d:todayISO(),w:Number(p.weight),t:Date.now()});s.onboarding={...s.onboarding,draft:{...d,committed:true},weightAdded:p.weight!=null,complete:true,step:20}});go(20);setTimeout(()=>useStore.setState({needsMobileOnboarding:false}),500)};
-if(step===1)return <div className="onboard splash"><img src="/brand/barbell-icon-only.svg" alt="BARBELL"/><Button variant="primary" onClick={()=>go(2)}>Continue</Button></div>;
-if(step===2)return <div className="onboard welcome"><img src="/brand/barbell-icon-only.svg" alt="BARBELL"/><h1>Welcome to Barbell</h1><p>Your workout. Your progress.</p><Button variant="primary" onClick={()=>{update(s=>{s.onboarding={...s.onboarding,legal:{termsVersion:'1.0',privacyVersion:'1.0',acceptedAt:Date.now()},step:3}});chooseLocalMode();go(3)}}>Get Started</Button><small>By tapping Get Started, you agree to our <button onClick={()=>open('BARBELL Terms of Service',TERMS)}>Terms of Service</button> and acknowledge our <button onClick={()=>open('BARBELL Privacy Policy',PRIVACY)}>Privacy Policy</button>.</small></div>;
-if(step===3)return <div className="onboard">{header('What’s your name?','Let’s make your training personal.')}<input className="input" placeholder="Your name" value={p.displayName||''} onChange={e=>save({displayName:e.target.value})}/><Button variant="primary" disabled={!p.displayName?.trim()} onClick={()=>{save({displayName:p.displayName.trim()});go(4)}}>Continue</Button></div>;
-if(step===4)return <div className="onboard intro">{header(<>Hi, <em>{p.displayName||'there'}.</em></>,'Ready to unlock your fitness journey? Let’s start with a quick look at where you are today.')}<Button variant="primary" onClick={()=>go(5)}>Continue</Button></div>;
-if(step===5)return <div className="onboard">{header('Let’s focus on your goal.','Choose up to 3 goals.')}<div className="onboard-grid">{goals.map(g=><button className={p.goals?.includes(g)?'selected':''} onClick={()=>{const a=p.goals||[];if(a.includes(g))save({goals:a.filter(x=>x!==g)});else if(a.length<3)save({goals:[...a,g]})}}>{g}</button>)}</div><Button variant="primary" onClick={()=>go(6)}>Next</Button></div>;
-if(step===7)return <div className="onboard">{header('When were you born?','Used to personalize your training recommendations.')}<input className="input" type="date" value={p.dob||''} onChange={e=>save({dob:e.target.value})}/><Button variant="primary" onClick={()=>go(8)}>Next</Button></div>;
-if(step===8||step===9){const h=step===8,k=h?'heightCm':'weight';return <div className="onboard">{header(h?'How tall are you?':'What’s your weight?',h?'Used to personalize your training metrics.':'Used to track your progress accurately.')}<input className="input measure" type="number" step="0.1" value={p[k]??''} onChange={e=>save({[k]:e.target.value===''?null:Number(e.target.value)})} placeholder={h?'cm':S.unit}/><Button variant="primary" onClick={()=>go(step+1)}>Next</Button></div>}
-if(step===10)return <div className="onboard">{header('Anything we should know?','This helps us make your training safer and more relevant.')}<div className="onboard-grid">{health.map(x=><button className={p.healthConditions?.includes(x)?'selected':''} onClick={()=>save({healthConditions:(p.healthConditions||[]).includes(x)?p.healthConditions.filter(y=>y!==x):[...(p.healthConditions||[]).filter(y=>y!=="I don’t have any"),x]})}>{x}</button>)}<button className={p.healthConditions?.includes("I don’t have any")?'selected':''} onClick={()=>save({healthConditions:["I don’t have any"]})}>I don’t have any</button></div><Button variant="primary" onClick={()=>go(11)}>Next</Button></div>;
-if(options[step]){const [h,k]=stepMeta[step];return <div className="onboard">{header(h,step===11?'Optional — used to personalize your training recommendations.':'')}<div className="onboard-list">{options[step].map(v=><button className={p[k]===v?'selected':''} onClick={()=>save({[k]:v})}>{v}</button>)}</div>{step===16&&<><label>Optional: exact time</label><input className="input" type="time" value={p.trainingTime||''} onChange={e=>save({trainingTime:e.target.value})}/></>}<Button variant="primary" onClick={()=>go(step+1)}>Next</Button></div>}
-if(step===17){draft();const d=useStore.getState().S.onboarding.draft;return <div className="onboard">{header('Your Barbell plan is taking shape.')}<Summary p={p}/><h2>Your first week</h2>{d?.schedule.map(x=><div className="plan-row">{['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][x.day]} · {d.routines.find(r=>r.id===x.routineId)?.name}</div>)}<Button variant="primary" onClick={()=>go(18)}>Next</Button></div>}
-if(step===18)return <div className="onboard">{header('Your starting targets','Based on your profile and goals.')}<div className="targets"><span><b>{p.daysPerWeek||'—'}</b>Training days / week</span><span><b>{p.duration||'—'}</b>Session duration</span><span><b>{p.goals?.[0]||'—'}</b>Primary goal</span><span><b>{p.environment||'—'}</b>Training environment</span></div><p className="note">These are starting targets to help you get moving. You can adjust them later.</p><Button variant="primary" onClick={()=>go(19)}>Next</Button></div>;
-if(step===19)return <div className="onboard">{header('Ready to train?','Your first week is ready.')}<Summary p={p}/><Button variant="primary" onClick={commit}>Start My Plan</Button><Button onClick={()=>go(5)}>Adjust</Button></div>;
-return <div className="onboard splash">{header('You’re ready.')}<img src="/brand/barbell-icon-only.svg" alt="BARBELL"/><p>Preparing your plan…</p></div>}
-function Summary({p}){return <div className="summary">{[['Goal',p.goals?.[0]],['Training',p.daysPerWeek],['Environment',p.environment],['Session duration',p.duration],['Experience',p.experience]].map(([k,v])=><div><span>{k}</span><b>{v||'Not set'}</b></div>)}</div>}
+
+export const ONBOARDING_VERSION = 3
+export const GOALS = ['Strength & Conditioning', 'Bodybuilding', 'Fat Loss', 'Muscle Gain', 'Stamina & Mobility', 'General Fitness']
+export function normalizedOnboardingStep(onboarding) {
+  if (onboarding?.complete) return 5
+  if (onboarding?.version === ONBOARDING_VERSION) return Math.max(1, Math.min(5, onboarding.step || 1))
+  if (onboarding?.legal) return onboarding.step >= 5 ? 4 : 3
+  return 1
+}
+
+function Progress({ current, onBack }) {
+  return <div className="onboarding-progress" aria-label={`Step ${current} of 2`}>
+    <button className="onboarding-back" onClick={onBack} aria-label="Back"><Icon name="chevronLeft" /></button>
+    <div className="onboarding-progress-track"><span style={{ '--progress': `${current * 50}%` }} /></div>
+    <b>{current} / 2</b>
+  </div>
+}
+
+function Splash({ onDone }) {
+  useEffect(() => { const timer = setTimeout(onDone, 1300); return () => clearTimeout(timer) }, [onDone])
+  return <section className="onboarding-screen onboarding-splash" aria-label="BARBELL"><img src="/brand/barbell-icon-only.svg" alt="BARBELL" /></section>
+}
+
+function Preparing({ onDone }) {
+  const [stage, setStage] = useState(0)
+  const lines = ['Analyzing your goal...', 'Building your workout plan...', 'Personalizing your training...', "You’re ready."]
+  useEffect(() => {
+    if (stage >= lines.length) { const done = setTimeout(onDone, 260); return () => clearTimeout(done) }
+    const timer = setTimeout(() => setStage(s => s + 1), 480)
+    return () => clearTimeout(timer)
+  }, [stage, lines.length, onDone])
+  return <section className="onboarding-screen onboarding-preparing">
+    <img className="preparing-logo" src="/brand/barbell-icon-only.svg" alt="BARBELL" />
+    <div className="preparing-steps" aria-live="polite">{lines.map((line, i) => <div key={line} className={i < stage ? 'complete' : i === stage ? 'active' : ''}><span>{i < stage ? '✓' : ''}</span><b>{line}</b></div>)}</div>
+    <div className="preparing-track"><span style={{ width: `${Math.min(stage, 4) * 25}%` }} /></div>
+  </section>
+}
+
+export default function MobileOnboarding() {
+  const { S, update, chooseLocalMode } = useStore()
+  const p = S.personalization || {}
+  const initial = useMemo(() => normalizedOnboardingStep(S.onboarding), [])
+  const [step, setStep] = useState(initial)
+  const selectedGoal = p.goals?.find(goal => GOALS.includes(goal)) || ''
+  const persistStep = next => {
+    update(s => { s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: next, draft: null, weightAdded: false } })
+    setStep(next)
+  }
+  const openLegal = Reader => useUI.getState().openSheet(close => <Reader close={close} />)
+  const start = async () => {
+    update(s => { s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: 3, draft: null, legal: { termsVersion: '1.0', privacyVersion: '1.0', acceptedAt: Date.now() } } })
+    await chooseLocalMode()
+    setStep(3)
+  }
+  const finish = () => {
+    update(s => { s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: 5, complete: true, draft: null, weightAdded: false } })
+    useStore.setState({ needsMobileOnboarding: false })
+  }
+
+  if (step === 1) return <Splash onDone={() => persistStep(2)} />
+  if (step === 2) return <section className="onboarding-screen onboarding-welcome">
+    <div className="welcome-content"><img src="/brand/barbell-icon-only.svg" alt="BARBELL" /><h1>Welcome to Barbell</h1><p>Your workout. Your progress.</p></div>
+    <div className="onboarding-actions"><Button variant="primary" onClick={start}>Get Started</Button><small>By tapping Get Started, you agree to our <button onClick={() => openLegal(TermsReader)}>Terms of Service</button> and acknowledge our <button onClick={() => openLegal(PrivacyReader)}>Privacy Policy</button>.</small></div>
+  </section>
+  if (step === 3) {
+    const submit = e => { e.preventDefault(); const name = (p.displayName || '').trim(); if (!name) return; update(s => { s.personalization = { ...s.personalization, displayName: name }; s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: 4 } }); setStep(4) }
+    return <form className="onboarding-screen onboarding-form" onSubmit={submit}>
+      <Progress current={1} onBack={() => persistStep(2)} /><div className="onboarding-copy"><h1>What’s your name?</h1><p>Let’s make your training personal.</p><label className="sr-only" htmlFor="onboarding-name">Your name</label><input id="onboarding-name" className="input" name="name" autoComplete="name" autoCapitalize="words" enterKeyHint="next" placeholder="Your name" value={p.displayName || ''} onChange={e => update(s => { s.personalization = { ...s.personalization, displayName: e.target.value } })} /></div>
+      <Button type="submit" variant="primary" disabled={!p.displayName?.trim()}>Continue</Button>
+    </form>
+  }
+  if (step === 4) return <section className="onboarding-screen onboarding-goals">
+    <Progress current={2} onBack={() => persistStep(3)} /><div className="goal-copy"><h1>What’s your goal?</h1></div>
+    <div className="goal-grid" role="radiogroup" aria-label="Training goal">{GOALS.map((goal, i) => <button key={goal} type="button" role="radio" aria-checked={selectedGoal === goal} className={selectedGoal === goal ? 'selected' : ''} onClick={() => update(s => { s.personalization = { ...s.personalization, goals: [goal] } })}><span className={`goal-art goal-art-${i + 1}`} aria-hidden="true"><Icon name={['barbell','arm','figureRun','figureStrength','stretch','figureRun'][i]} /></span><b>{goal}</b>{selectedGoal === goal && <i aria-hidden="true">✓</i>}</button>)}</div>
+    <Button variant="primary" disabled={!selectedGoal} onClick={() => persistStep(5)}>Continue</Button>
+  </section>
+  return <Preparing onDone={finish} />
+}

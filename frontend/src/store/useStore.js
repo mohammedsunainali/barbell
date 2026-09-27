@@ -29,7 +29,7 @@ export const DEF = {
   personalization: { displayName: '', goals: [], gender: null, dob: null, heightCm: null,
     healthConditions: [], lifestyle: null, experience: null, environment: null,
     daysPerWeek: null, duration: null, trainingPeriod: null, trainingTime: null },
-  onboarding: { version: 2, step: 1, complete: false, legal: null, draft: null, weightAdded: false },
+  onboarding: { version: 3, step: 1, complete: false, legal: null, draft: null, weightAdded: false },
   exWeights: {}, workouts: [], active: null, customEx: [], gifSize: 'full',
   // How the active workout is laid out — 'cards' (one exercise at a time with Prev/Next),
   // 'list' (every exercise stacked and scrollable) or 'compact' (that stack stripped to just

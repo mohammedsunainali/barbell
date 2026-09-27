@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store/useStore.js'
-import { effectiveRoutines, effectiveRoutineIds, nextTrainingDay, streakWeeks, lastBW, setsDoneActive } from '../lib/history.js'
+import { effectiveRoutines, effectiveRoutineIds, nextTrainingDay, streakWeeks, lastBW } from '../lib/history.js'
 import { fmtNum, fmtDate, todayISO, isoOf, weekKey, weekStartOf, weekDayOffset, DAYS, DAYN } from '../lib/format.js'
 import { t, dateLocale } from '../lib/i18n.js'
-import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, starterPlanSheet, bwDeltaColor } from '../sheets.jsx'
+import { bwSheet, goalSheet, dayOverrideSheet, calendarSheet, startFlow, bwDeltaColor } from '../sheets.jsx'
 import LineChart from '../components/LineChart.jsx'
 import Icon from '../components/Icon.jsx'
 import { Button } from '../components/ui.jsx'
@@ -68,12 +68,6 @@ export default function Home() {
     </div>
 
     <div className="card home-workout-card">
-      <div className="row between" style={{ marginBottom: 8 }}>
-        <button className="iconbtn" style={{ width: 30, height: 30, fontSize: 15 }} onClick={() => setWeekOffset(w => w - 1)} aria-label="Previous week"><Icon name="chevronLeft" /></button>
-        <div className="small muted" style={{ fontWeight: 500 }}>{wkLabel}</div>
-        <button className="iconbtn" style={{ width: 30, height: 30, fontSize: 15 }} onClick={() => setWeekOffset(w => w + 1)} aria-label="Next week"><Icon name="chevronRight" /></button>
-      </div>
-      <div className="week">{strip}</div>
       {/* Once today's session is logged the row stops asking for it. The week strip already
           knew (its dot goes 'done'); this row did not, so a finished day kept showing the
           routine name behind a green Start tag and read as still outstanding (issue #4).
@@ -98,6 +92,7 @@ export default function Home() {
           : routine ? <span className="tag acc">{t('Start Workout')}</span>
           : <Icon name="plus" className="chev" />}
       </div>
+      {!S.routines.length && !S.active && <Button variant="primary" icon="calendar" onClick={() => nav('/plan')}>{t('Plan your workout')}</Button>}
       {/* The row above starts today's plan in one tap, and so does the Start button in the tab
           bar — which is the whole problem when you want something else. Both jump straight into
           the planned session whenever there is one, so the Start screen (a freestyle session,
@@ -109,6 +104,22 @@ export default function Home() {
           {t('Choose a different workout')}
         </Button>
       </div>}
+    </div>
+
+    <div className="card tappable home-streak-card" style={{ cursor: 'pointer' }} {...tappable(() => calendarSheet())}>
+      <div className="row between">
+        <div className="row" style={{ gap: 12 }}><span className="lrow-i streak-icon"><Icon name="flame" /></span><div><div className="ttl">{t('{0} week streak', streakWeeks(S))}</div><div className="muted small">{wThisWeek}{plannedPerWeek ? ' / ' + plannedPerWeek : ''} {t('this week')}</div></div></div>
+        <Icon name="chevronRight" className="chev" />
+      </div>
+    </div>
+
+    <div className="card home-week-card">
+      <div className="row between" style={{ marginBottom: 12 }}>
+        <button className="iconbtn" onClick={() => setWeekOffset(w => w - 1)} aria-label="Previous week"><Icon name="chevronLeft" /></button>
+        <h2 style={{ margin: 0, fontSize: 18 }}>{wkLabel}</h2>
+        <button className="iconbtn" onClick={() => setWeekOffset(w => w + 1)} aria-label="Next week"><Icon name="chevronRight" /></button>
+      </div>
+      <div className="week">{strip}</div>
     </div>
 
     {/* Jump to the gym check-in cards (QR membership codes). Shown here as a quick tap on
@@ -125,18 +136,6 @@ export default function Home() {
           </div>
           <Icon name="chevronRight" className="chev" />
         </div>
-      </div>
-    )}
-
-    {!S.routines.length && !S.active && (
-      <div className="card">
-        <div className="row" style={{ gap: 10, marginBottom: 6 }}>
-          <span className="lrow-i"><Icon name="sparkles" /></span>
-          <div className="big" style={{ fontSize: 22 }}>{t('Welcome!')}</div>
-        </div>
-        <div className="muted small" style={{ marginBottom: 12 }}>{t('Set up your weekly routine to get going — or load a ready-made starter plan.')}</div>
-        <Button variant="primary" icon="sparkles" onClick={starterPlanSheet}>{t('Load starter plan')}</Button>
-        <div style={{ height: 8 }} /><Button onClick={() => nav('/plan')}>{t('Build my own plan')}</Button>
       </div>
     )}
 
@@ -172,17 +171,5 @@ export default function Home() {
         : t("No entries yet — log your weight to start the curve. It's also asked before every workout.")}</div>}
     </div>
 
-    <div className="card tappable" style={{ cursor: 'pointer' }} {...tappable(() => calendarSheet())}>
-      <div className="row between">
-        <div>
-          <div className="row" style={{ gap: 7, fontSize: 22, fontWeight: 600, letterSpacing: '-.021em' }}>
-            <Icon name="flame" style={{ color: 'var(--orange)' }} />
-            {t('{0} week streak', streakWeeks(S))}
-          </div>
-          <div className="muted small" style={{ marginTop: 2 }}>{wThisWeek}{plannedPerWeek ? ' / ' + plannedPerWeek : ''} {t('this week')} · {t(S.workouts.length === 1 ? '{0} workout total' : '{0} workouts total', S.workouts.length)}</div>
-        </div>
-        <Icon name="calendar" className="chev" style={{ fontSize: 20 }} />
-      </div>
-    </div>
   </div>
 }
