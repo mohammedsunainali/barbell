@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useStore } from '../store/useStore.js'
 import { useUI } from '../store/useUI.js'
 import { Button } from '../components/ui.jsx'
@@ -19,6 +19,10 @@ export function PrivacyReader({ close }) { return <Legal title="BARBELL Privacy 
 
 export const ONBOARDING_VERSION = 3
 export const GOALS = ['Strength & Conditioning', 'Bodybuilding', 'Fat Loss', 'Muscle Gain', 'Stamina & Mobility', 'General Fitness']
+export const INPUT_STEPS = Object.freeze({
+  NAME: { position: 1, total: 2 },
+  GOAL: { position: 2, total: 2 },
+})
 export function normalizedOnboardingStep(onboarding) {
   if (onboarding?.complete) return 5
   if (onboarding?.version === ONBOARDING_VERSION) return Math.max(1, Math.min(5, onboarding.step || 1))
@@ -26,17 +30,112 @@ export function normalizedOnboardingStep(onboarding) {
   return 1
 }
 
-function Progress({ current, onBack }) {
-  return <div className="onboarding-progress" aria-label={`Step ${current} of 2`}>
+function Progress({ step, onBack }) {
+  const fraction = step.position / step.total
+  return <div className="onboarding-progress">
     <button className="onboarding-back" onClick={onBack} aria-label="Back"><Icon name="chevronLeft" /></button>
-    <div className="onboarding-progress-track"><span style={{ '--progress': `${current * 50}%` }} /></div>
-    <b>{current} / 2</b>
+    <div className="onboarding-progress-track" role="progressbar" aria-label={`Onboarding step ${step.position} of ${step.total}`} aria-valuemin="1" aria-valuemax={step.total} aria-valuenow={step.position}>
+      <span style={{ '--progress': `${fraction * 100}%` }} />
+    </div>
+    <b>{step.position} / {step.total}</b>
   </div>
 }
 
+function prefersReducedMotion() {
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches || false
+}
+
 function Splash({ onDone }) {
-  useEffect(() => { const timer = setTimeout(onDone, 1300); return () => clearTimeout(timer) }, [onDone])
-  return <section className="onboarding-screen onboarding-splash" aria-label="BARBELL"><img src="/brand/barbell-icon-only.svg" alt="BARBELL" /></section>
+  const identity = useRef(null)
+  const completed = useRef(false)
+  const done = useRef(onDone)
+  const [reduceMotion] = useState(prefersReducedMotion)
+  done.current = onDone
+  const complete = useCallback(event => {
+    if (event && event.target !== event.currentTarget) return
+    if (completed.current) return
+    completed.current = true
+    done.current()
+  }, [])
+  useEffect(() => {
+    if (!reduceMotion || !identity.current) return undefined
+    const animation = identity.current.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 240, easing: 'ease-out', fill: 'both' })
+    animation.finished.then(() => complete()).catch(() => {})
+    return () => animation.cancel()
+  }, [complete, reduceMotion])
+  return <section className="onboarding-screen onboarding-splash" aria-label="BARBELL">
+    <div ref={identity} className={`splash-identity${reduceMotion ? ' reduce-motion' : ''}`} onAnimationEnd={reduceMotion ? undefined : complete}>
+      <span className="splash-glow" aria-hidden="true" />
+      <img src="/brand/barbell-icon-only.svg" alt="BARBELL" />
+    </div>
+  </section>
+}
+
+function NameScreen({ value, onChange, onBack, onNormalize, onDone }) {
+  const screen = useRef(null)
+  const input = useRef(null)
+  const autofocusTimer = useRef(null)
+  const handoffTimer = useRef(null)
+  const submitting = useRef(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const normalized = value.trim()
+
+  useEffect(() => {
+    autofocusTimer.current = window.setTimeout(() => input.current?.focus(), 300)
+    return () => window.clearTimeout(autofocusTimer.current)
+  }, [])
+  useEffect(() => () => window.clearTimeout(handoffTimer.current), [])
+  useEffect(() => {
+    const viewport = window.visualViewport
+    const element = screen.current
+    if (!viewport || !element) return undefined
+    let fullHeight = Math.max(window.innerHeight, viewport.height)
+    const sync = () => {
+      if (viewport.height > fullHeight - 40) fullHeight = viewport.height
+      element.style.setProperty('--name-viewport-height', `${Math.round(viewport.height)}px`)
+      element.dataset.keyboard = viewport.height < fullHeight - 100 ? 'open' : 'closed'
+    }
+    sync()
+    viewport.addEventListener('resize', sync)
+    return () => {
+      viewport.removeEventListener('resize', sync)
+      element.style.removeProperty('--name-viewport-height')
+      delete element.dataset.keyboard
+    }
+  }, [])
+
+  const submit = useCallback(event => {
+    event.preventDefault()
+    const name = value.trim()
+    if (!name || submitting.current) return
+    submitting.current = true
+    setIsSubmitting(true)
+    onNormalize(name)
+    input.current?.blur()
+    handoffTimer.current = window.setTimeout(onDone, 200)
+  }, [onDone, onNormalize, value])
+
+  const back = () => {
+    input.current?.blur()
+    onBack()
+  }
+
+  return <form ref={screen} className="onboarding-screen onboarding-name" onSubmit={submit}>
+    <main className="name-main">
+      <Progress step={INPUT_STEPS.NAME} onBack={back} />
+      <div className="name-content-scroll">
+        <div className="onboarding-copy">
+          <h1>What’s your name?</h1>
+          <p>Let’s make your training personal.</p>
+          <div className="name-input-block">
+            <label className="name-input-label" htmlFor="onboarding-name">Your name</label>
+            <input ref={input} id="onboarding-name" className="input" name="name" type="text" autoComplete="name" autoCapitalize="words" enterKeyHint="next" placeholder="Your name" value={value} onChange={event => onChange(event.target.value)} />
+          </div>
+        </div>
+      </div>
+    </main>
+    <div className="name-actions"><Button type="submit" variant="primary" disabled={!normalized || isSubmitting}>Continue</Button></div>
+  </form>
 }
 
 function Preparing({ onDone }) {
@@ -59,6 +158,7 @@ export default function MobileOnboarding() {
   const p = S.personalization || {}
   const initial = useMemo(() => normalizedOnboardingStep(S.onboarding), [])
   const [step, setStep] = useState(initial)
+  const startPending = useRef(false)
   const selectedGoal = p.goals?.find(goal => GOALS.includes(goal)) || ''
   const persistStep = next => {
     update(s => { s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: next, draft: null, weightAdded: false } })
@@ -66,9 +166,15 @@ export default function MobileOnboarding() {
   }
   const openLegal = Reader => useUI.getState().openSheet(close => <Reader close={close} />)
   const start = async () => {
+    if (startPending.current) return
+    startPending.current = true
     update(s => { s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: 3, draft: null, legal: { termsVersion: '1.0', privacyVersion: '1.0', acceptedAt: Date.now() } } })
-    await chooseLocalMode()
-    setStep(3)
+    try {
+      await chooseLocalMode()
+      setStep(3)
+    } finally {
+      startPending.current = false
+    }
   }
   const finish = () => {
     update(s => { s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: 5, complete: true, draft: null, weightAdded: false } })
@@ -77,18 +183,12 @@ export default function MobileOnboarding() {
 
   if (step === 1) return <Splash onDone={() => persistStep(2)} />
   if (step === 2) return <section className="onboarding-screen onboarding-welcome">
-    <div className="welcome-content"><img src="/brand/barbell-icon-only.svg" alt="BARBELL" /><h1>Welcome to Barbell</h1><p>Your workout. Your progress.</p></div>
+    <div className="welcome-center"><div className="welcome-content"><div className="welcome-identity"><span aria-hidden="true" /><img src="/brand/barbell-icon-only.svg" alt="BARBELL" /></div><h1>Welcome to Barbell</h1><p>Your workout. Your progress.</p></div></div>
     <div className="onboarding-actions"><Button variant="primary" onClick={start}>Get Started</Button><small>By tapping Get Started, you agree to our <button onClick={() => openLegal(TermsReader)}>Terms of Service</button> and acknowledge our <button onClick={() => openLegal(PrivacyReader)}>Privacy Policy</button>.</small></div>
   </section>
-  if (step === 3) {
-    const submit = e => { e.preventDefault(); const name = (p.displayName || '').trim(); if (!name) return; update(s => { s.personalization = { ...s.personalization, displayName: name }; s.onboarding = { ...s.onboarding, version: ONBOARDING_VERSION, step: 4 } }); setStep(4) }
-    return <form className="onboarding-screen onboarding-form" onSubmit={submit}>
-      <Progress current={1} onBack={() => persistStep(2)} /><div className="onboarding-copy"><h1>What’s your name?</h1><p>Let’s make your training personal.</p><label className="sr-only" htmlFor="onboarding-name">Your name</label><input id="onboarding-name" className="input" name="name" autoComplete="name" autoCapitalize="words" enterKeyHint="next" placeholder="Your name" value={p.displayName || ''} onChange={e => update(s => { s.personalization = { ...s.personalization, displayName: e.target.value } })} /></div>
-      <Button type="submit" variant="primary" disabled={!p.displayName?.trim()}>Continue</Button>
-    </form>
-  }
+  if (step === 3) return <NameScreen value={p.displayName || ''} onChange={displayName => update(s => { s.personalization = { ...s.personalization, displayName } })} onBack={() => persistStep(2)} onNormalize={displayName => update(s => { s.personalization = { ...s.personalization, displayName } })} onDone={() => persistStep(4)} />
   if (step === 4) return <section className="onboarding-screen onboarding-goals">
-    <Progress current={2} onBack={() => persistStep(3)} /><div className="goal-copy"><h1>What’s your goal?</h1></div>
+    <Progress step={INPUT_STEPS.GOAL} onBack={() => persistStep(3)} /><div className="goal-copy"><h1>What’s your goal?</h1></div>
     <div className="goal-grid" role="radiogroup" aria-label="Training goal">{GOALS.map((goal, i) => <button key={goal} type="button" role="radio" aria-checked={selectedGoal === goal} className={selectedGoal === goal ? 'selected' : ''} onClick={() => update(s => { s.personalization = { ...s.personalization, goals: [goal] } })}><span className={`goal-art goal-art-${i + 1}`} aria-hidden="true"><Icon name={['barbell','arm','figureRun','figureStrength','stretch','figureRun'][i]} /></span><b>{goal}</b>{selectedGoal === goal && <i aria-hidden="true">✓</i>}</button>)}</div>
     <Button variant="primary" disabled={!selectedGoal} onClick={() => persistStep(5)}>Continue</Button>
   </section>
